@@ -1,17 +1,19 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $titre = $_POST["titre"];
-    $message = $_POST["message"];
+require 'vendor/autoload.php';
+include 'db_conn.php';
 
-    // Requête pour insérer une nouvelle notification
-    $sql = "INSERT INTO Notifications (titre, message) VALUES ('$titre', '$message')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Nouvelle notification créée avec succès !";
+$email = $_GET['email'];
+$name = $_GET['name'];
+$msg = "L'individus $name souhaiterais rejoindre votre association";
+if (isset($_GET['input'])){
+    $input = $_GET['input'];
+    $my_institution_id = "SELECT institution_id FROM Institutions WHERE name = $input";
+    $admin_id = "SELECT user_id FROM Users WHERE institution_id = $my_institution_id AND role = 'admin'";
+    $req = "INSERT INTO Notifications (user_id, message, created_at) VALUES ($admin_id, $msg, NOW())";
+    if ($req == TRUE){
+        echo "Message sent successfully <br>";
     } else {
-        echo "Erreur lors de la création de la notification : " . $conn->error;
+        echo " A probvlem have occured";
     }
-
-    $conn->close();
 }
 ?>

@@ -198,6 +198,30 @@
         color: #555;
     }
 
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    ul li {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        transition: background-color 0.3s;
+    }
+    
+    ul li:hover {
+        background-color: #e0f7fa;
+    }
+    
+    ul li strong {
+        color: #007bff;
+    }
+        
+
     button {
         width: 90%;
         background-color: #007bff;
@@ -604,39 +628,281 @@
 .Container3 a:hover {
     background-color: #0056b3;
 }
+.container5 {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
 
-
-
-@media (max-width: 768px) {
-    .container {
-        margin-top: 100px;
-        flex-direction: column;
-    }
-
-    .container2 {
-        margin-top: 100px;
-        flex-direction: column;
+    .image_block {
+        display: flex;
         align-items: center;
-    }
+        justify-content: center;
+        height: auto;
+        flex-direction: row;
+        width: 50%;
+        animation: slideInFromTop 1s ease-in;
+        img {
+            animation: shine 2s infinite ease;
+        }
+      }
+      
+      .account_block {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        animation: slideInFromRight 1s ease-in-out;
+      }
+      
+      h1 {
+        font-size: 24px;
+        color: #007bff;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .inputs {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        width: 80%;
+        background-color: #f9f9f9;
+      }
+      
+      .material-symbols-outlined {
+        color: #999;
+        margin-right: 10px;
+      }
+      
+      .search_input {
+        border: none;
+        outline: none;
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        background-color: transparent;
+      }
+      
+      .institution-list {
+        margin-top: 20px;
+        width: 80%;
+      }
+      
+      .institution-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s;
+        cursor: pointer;
+      }
+      
+      .institution-item:hover {
+        background-color: #e9e9e9;
+      }
+      
+      .institution-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        margin-right: 15px;
+      }
+      
+      .institution-info {
+        flex: 1;
+      }
+      
+      .institution-info h2 {
+        margin: 0;
+        font-size: 18px;
+        color: #1d06a0;
+      }
+      
+      .institution-info p {
+        margin: 5px 0 0;
+        color: #666;
+      }
+      
+      .no-results {
+        text-align: center;
+        color: #999;
+        margin-top: 20px;
+      }
+      
+      .institution-details {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        text-align: center;
+        width: 75%;
+        height: auto;
+      }
+      
+      .institution-details img {
+        width: 100px;
+        display: block;
+        margin: 0 auto 20px;
+      }
+      
+      .institution-details h2 {
+        font-size: 22px;
+        color: #333;
+        text-align: center;
+      }
+      
+      .institution-details p {
+        font-size: 16px;
+        color: #666;
+        text-align: center;
+      }
+      
+      .institution-details button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 70%;
+      }
+      
+      .institution-details button:hover {
+        background-color: #0056b3;
+      }
+  }
+  
+  
+  .container6 {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    animation: fadeIn 1s ease-in-out;
+
+
+.image_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    flex-direction: row;
+    width: 50%;
+    animation: slideInFromRight 1s ease-in-out;
+}
+
+.image_block img {
+    max-width: 100%;
+    height: auto;
+    animation: shine infinite ease;
+}
+
+.request_block {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    text-align: center;
+    animation: slideInFromRight 1s ease;
+}
+
+.request_block h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
+}
+
+
+
+  
+  @media (max-width: 800px) {
 
     .Container {
-        margin-top: 100px;
         flex-direction: column;
         align-items: center;
+    };
+    .container5 {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .image_block {
+      width: 100%;
+    }
+  
+    .account_block {
+      width: 100%;
+    }
 
-        .phone-input {
-            flex-direction: column;
+    .container6 {
+        flex-direction: column;
 
-            input {
-                width: 100%;
-            }
-
-            select {
-                width: 100%;
-            }
+        .image_block {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    
+        .request_block {
+            width: 100%;
+            padding: 20px;
+        }
+    
+        .request_block h1 {
+            font-size: 20px;
+        }
+    
+        a {
+            width: 90%;
+            text-align: center;
         }
     }
-}
+    .container5 {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+  }
+
 
 @keyframes fadeIn {
     from {

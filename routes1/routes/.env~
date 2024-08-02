@@ -1,0 +1,6 @@
+DB_HOST=localhost
+DB_USER=root
+DB_URL=https://localhost:8080
+DB_PASS=""
+DB_NAME=presence_db
+SECRET_KEY="SSB3YW50IHRvIGJlZ2luIGJpbGxpb25uYWlyZQo="

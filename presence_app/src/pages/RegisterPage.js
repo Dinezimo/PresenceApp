@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './RegisterPage.css'
 import Confetti from 'react-confetti';
 import { useSpring, animated } from '@react-spring/web';
+import { useNavigate } from 'react-router';
 
-const InstitutionType = ({ step, ichange }) => {
+const InstitutionType = ({ step, ichange, setInstitution}) => {
+    const [sel1, setSel1] = useState(false);
+    const [sel2, setSel2] = useState(false);
     return (
         <div className="container">
             <div className="image_bloc">
@@ -14,15 +18,15 @@ const InstitutionType = ({ step, ichange }) => {
                     <h2>Welcome, what brings you?</h2>
                     <div className="check_list">
                         <div className="check c1">
-                            <input type="checkbox" onChange={() => ichange('Travail')} />
+                            <input type="checkbox" onChange={() => {ichange('Travail'); setSel1(true)}} />
                             <h3>Travail</h3>
                         </div>
                         <div className="check c2">
-                            <input type="checkbox" onChange={() => ichange('Etudes')} />
+                            <input type="checkbox" onChange={() => {ichange('Etudes'); setSel1(true)}} />
                             <h3>Etudes</h3>
                         </div>
                         <div className="check c3">
-                            <input type="checkbox" onChange={() => ichange('Personnel')} />
+                            <input type="checkbox" onChange={() => {ichange('Personnel'); setSel1(true)}} />
                             <h3>Personnel</h3>
                         </div>
                     </div>
@@ -31,20 +35,20 @@ const InstitutionType = ({ step, ichange }) => {
                     <h2>How would you describe your current institution?</h2>
                     <div className="check_list">
                         <div className="check c1">
-                            <input type="checkbox" onChange={() => ichange('Entreprise')} />
+                            <input type="checkbox" onChange={() => {ichange('Entreprise'); setSel2(true); setInstitution(i => ({...i, status: 'Entreprise'}))}}/>
                             <h3>Entreprise</h3>
                         </div>
                         <div className="check c2">
-                            <input type="checkbox" onChange={() => ichange('School')} />
+                            <input type="checkbox" onChange={() => {ichange('School'); setSel2(true); setInstitution(i => ({...i, status: 'School'}))}} />
                             <h3>School or Campus</h3>
                         </div>
                         <div className="check c3">
-                            <input type="checkbox" onChange={() => ichange('Other')} />
+                            <input type="checkbox" onChange={() => {ichange('Other'); setSel2(true); setInstitution(i => ({...i, status: 'others'}))}} />
                             <h3>Others</h3>
                         </div>
                     </div>
                 </div>
-                <button onClick={() => step(1)}>Continue</button>
+                <button onClick={() => {if (sel1 && sel2) step(1)}}>Continue</button>
                 <div className="login-section">
                     <span>Do you have an account?</span>
                     <a href="/login">Login</a>
@@ -54,10 +58,11 @@ const InstitutionType = ({ step, ichange }) => {
     );
 };
 
-const UserStatus = ({type, step}) => {
+const UserStatus = ({type, step, setstatus, setUser}) => {
     const [selectedRole, setSelectedRole] = useState(null);
-    const handleRoleClick = (role) => {
+    const handleRoleClick = (role, st) => {
         setSelectedRole(role);
+        setstatus(st);
     };
     return (
         <div className="container1">
@@ -66,7 +71,7 @@ const UserStatus = ({type, step}) => {
             <div className="role_containers">
                 <div 
                     className={`role_container r1 ${selectedRole === 'member' ? 'selected' : ''}`}
-                    onClick={() => handleRoleClick('member')}
+                    onClick={() => {handleRoleClick('member', 'r1'); setUser(i => ({...i, role: 'member'}))}}
                 >
                     <img src={(type === 'Entreprise' || type === 'Other') ? './assets/student.webp' : './assets/employés.jpg'} alt="employé" />
                     <h2>I am a member</h2>
@@ -74,29 +79,69 @@ const UserStatus = ({type, step}) => {
                 </div>
                 <div 
                     className={`role_container r2 ${selectedRole === 'admin' ? 'selected' : ''}`}
-                    onClick={() => handleRoleClick('admin')}
+                    onClick={() => {handleRoleClick('admin', 'r2'); setUser(i => ({...i, role: 'admin'}))}}
                 >
                     <img src={(type === 'School') ? './assets/Boss.jpg' : './assets/Director.webp'} alt="admin" />
                     <h2>I am an admin</h2>
                     <p>Create a new institution to handle your team's time and attendance</p>
                 </div>
             </div>
-            <button onClick={() => step(2)}>Continue</button>
+            <button onClick={() => {if (selectedRole != null) step(2)}}>Continue</button>
             <h3>Do you have an account?</h3>
             <a href="/login">Login</a>
         </div>
     );
 };
 
-const CreateNewAccount = ({ step }) => {
+const CreateNewAccount = ({step, status, setInstitution, setUser}) => {
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [visible, setVisible] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [institutions, setInstitutions] = useState([]);
+    const [selectedInstitution, setSelectedInstitution] = useState(null);
+    const [pass, SetPass] = useState([false, false, false, false]);
+    const nav = useNavigate();
+  
+ /*   useEffect(() => {
+      const fetchInstitutions = async () => {
+        try {
+          const response = await axios.get(`/institutions/search`, {
+            params: searchTerm ? { name: searchTerm } : {},
+          });
+          setInstitutions(response.data.institutions);
+        } catch (error) {
+          console.error('Error fetching institutions:', error);
+        }
+      };
+      fetchInstitutions();
+    }, [searchTerm]);
+*/  
+    const handleInstitutionClick = (institution) => {
+      setSelectedInstitution(institution);
+    };
     
+    const handleSelectClick = () => {
+        
+      };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleOutsideClick = (e) => {
+        if (e.target.classList.contains('container5')) {
+          setSelectedInstitution(null);
+        }
+      };
+
+      const handlepass = (nb) => {
+        const newpass = [...pass];
+        newpass[nb] = true;
+        SetPass(newpass);
+      }
+
+if (status == "r2") {
     return (
         <div className="container2">
             <div className="image-block">
@@ -110,14 +155,14 @@ const CreateNewAccount = ({ step }) => {
                         name="name" 
                         placeholder="Full name" 
                         value={formData.name} 
-                        onChange={handleChange} 
+                        onChange={(e) => {handleChange(e); handlepass(1)}} 
                     />
                     <InputField 
                         type="email" 
                         name="email" 
                         placeholder="E-mail" 
                         value={formData.email} 
-                        onChange={handleChange} 
+                        onChange={(e) => {handleChange(e); handlepass(2)}} 
                     />
                     <div className="pass">
                         <InputField 
@@ -125,15 +170,15 @@ const CreateNewAccount = ({ step }) => {
                             name="password" 
                             placeholder="Password" 
                             value={formData.password} 
-                            onChange={handleChange}
+                            onChange={(e) => {handleChange(e); handlepass(3)}}
                         />
                         <span className="toggle-visibility material-symbols-outlined icon" onClick={() => setVisible(!visible)}>
                             {visible ? 'visibility' : 'visibility_off'}
                         </span>
                     </div>
                 </div>
-                <Checkbox label="I agree to the Terms and Conditions" />
-                <button onClick={() => step(3)}>Continue</button>
+                <Checkbox label="I agree to the Terms and Conditions" handlepass={handlepass}/>
+                <button onClick={() => {if (pass[1] == pass[2] == pass[3] == pass[4] == true) {step(3); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password}))}}}>Continue</button>
                 <div className="login-container">
                     <span>Do you have an account?</span>
                     <a href="/login">Login</a>
@@ -141,28 +186,202 @@ const CreateNewAccount = ({ step }) => {
             </div>
         </div>
     );
+} else if (status == 'r1') {
+    return (
+        <div className="container5" onClick={handleOutsideClick}>
+      <div className="image_block">
+        <img src="/assets/Teamate.png" alt="Teamate" />
+      </div>
+      <div className="account_block">
+        <h1>Join an Institution</h1>
+        <div className="inputs">
+          <span className="material-symbols-outlined">search</span>
+          <input
+            type="text"
+            className="search_input"
+            placeholder="Search for an institution"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="institution-list">
+          {institutions.length > 0 ? (
+            institutions.map((institution) => (
+              <div
+                key={institution.id}
+                className="institution-item"
+                onClick={() => handleInstitutionClick(institution)}
+              >
+                <img src={institution.photo} alt={`${institution.name} logo`} className="institution-photo" />
+                <div className="institution-info">
+                  <h2>{institution.name}</h2>
+                  <p>{institution.description.slice(0, 50)}...</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="no-results">No results found</p>
+          )}
+        </div>
+        {selectedInstitution && (
+          <div className="institution-details">
+            <h2>{selectedInstitution.name}</h2>
+            <img src={selectedInstitution.photo} alt={`${selectedInstitution.name} logo`} />
+            <p>{selectedInstitution.description}</p>
+            <button onClick={() => {handleSelectClick(); step(7); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password})); setInstitution(i => ({...i, /*get the institution id */}))}}>Select</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
+};
+
+const Userform = ({step, status, setUser}) => {
+    const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+    const [visible, setVisible] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [institutions, setInstitutions] = useState([]);
+    const [selectedInstitution, setSelectedInstitution] = useState(null);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+    return (
+        <div className="container2">
+        <div className="image-block">
+            <img src="./assets/Teamate.png" alt="Teamwork" />
+        </div>
+        <div className="register-block">
+            <h1>Create a new account</h1>
+            <div className="inputs">
+                <InputField 
+                    type="text" 
+                    name="name" 
+                    placeholder="Full name"
+                    value={formData.name} 
+                    onChange={handleChange} 
+                />
+                <InputField 
+                    type="email" 
+                    name="email" 
+                    placeholder="E-mail" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                />
+            </div>
+            <Checkbox label="I agree to the Terms and Conditions" />
+            <button onClick={() => {step(7); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password}))}}>Continue</button>
+            <div className="login-container">
+                <span>Do you have an account?</span>
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+    );
+}
 
 const InputField = ({ type, name, placeholder, value, onChange }) => (
     <input type={type} name={name} placeholder={placeholder} value={value} onChange={onChange} />
 );
 
-const Checkbox = ({ label }) => (
+const Checkbox = ({ label, handlepass }) => (
     <div className="checkbox">
-        <input type="checkbox" />
+        <input type="checkbox" onChange={() => handlepass(4)}/>
         <label>{label}</label>
     </div>
 );
 
+const Request_to_institution = ()=> {
+    return (
+    <div className='container6'>
+        <div className='image_block'>
+            <img src='./assets/usermailsendig.png'></img>
+        </div>
+        <div className='request_block'>
+            <h1>Your Request have been send</h1>
+            <a href='/login'>Begin with presence app</a>
+        </div>
+    </div>);
+}
 
-const Institution_inform = ({step}) => {
+const Proposed_pack = ({step, setpack , setInstitution}) => {
+    const [selectedRole, setSelectedRole] = useState(null);
+    const handleRoleClick = (role, st) => {
+        setSelectedRole(role);
+        setpack(st);
+    };
+    return (
+        <div className="container1">
+            <h1>Begin With Niska</h1>
+            <h3>Choose your pack</h3>
+            <div className="role_containers">
+                <div 
+                    className={`role_container r1 ${selectedRole === 'member' ? 'selected' : ''}`}
+                    onClick={() => {handleRoleClick('member', 'p1'); setInstitution(i => ({...i, pack: 'freepack'}))}}
+                >
+                    <img src="assets/freepack.jpg" alt="freepack" />
+                    <h2>Simple presence</h2>
+                    <ul>
+                        <li>Secured presence by QR code or session code generation</li>
+                        <li>Secured presence with device camera authentification</li>
+                        <li>Possibility to add until 100 people in your group</li>
+                        <li>Maual activation</li>
+                        <li>downloadable repport</li>
+                    </ul>
+                </div>
+                <div 
+                    className={`role_container r2 ${selectedRole === 'admin' ? 'selected' : ''}`}
+                    onClick={() => {handleRoleClick('admin', 'p2'); setInstitution(i => ({...i, pack: 'avancedpack'}))}}
+                >
+                    <img src="assets/advancedpack.jpg" alt="avanced_pack" />
+                    <h2>advanced presence</h2>
+                    <ul>
+                        <li>Possibility to integrate a beacons and a cameras service in addition to qr code and code session</li>
+                        <li>Possibility to have your entire institution structured tomany many groups</li>
+                        <li>Right to rooms, schendule, notifications</li>
+                        <li>Automatic activation, manual activation</li>
+                        <li>possibility to add custumize it about your needs by joining us</li>
+                    </ul>
+                </div>
+            </div>
+            <button onClick={() => {step(5)}}>Continue</button>
+        </div>
+    );
+}
+const Institution_inform = ({step , setInstitution}) => {
 
     const [selectedSize, setSelectedSize] = useState(null);
+    const [pass2, setPass2] = useState([false, false]);
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
-    };
-
+        switch (size) {
+            case '1-10':
+                setInstitution(i => ({...i, team_number: '10'}));
+                break;
+            case '11-20':
+                setInstitution(i => ({...i, team_number: '20'}));
+                break;
+            case '21-50':
+                setInstitution(i => ({...i, team_number: '50'}));
+                break;
+            case '51-100':
+                setInstitution(i => ({...i, team_number: '100'}));
+                break;
+            case '100+':
+                setInstitution(i => ({...i, team_number: '101'}));
+                break;
+            default:
+                break;
+        };
+    }
+    const handlepass2 = (nb) => {
+        const newpass = [...pass2];
+        newpass[nb] = true;
+        setPass2(newpass);
+      }
     return (
         <div className="Container">
             <div className="bloc_img">
@@ -173,7 +392,7 @@ const Institution_inform = ({step}) => {
                 <h3>Help me to Create a best user experience for you</h3>
                 <div className="inputs">
                     <h2>Company name</h2>
-                    <input type="text" className="name" placeholder="Institution name" required></input>
+                    <input type="text" className="name" placeholder="Institution name" required onChange={(e) => {handlepass2(1); setInstitution(i => ({...i, name: e.target.value}))}}></input>
                     <h2>Phone number and Location</h2>
                     <div className="phone-input">
                       <select className="country-code">
@@ -385,10 +604,11 @@ const Institution_inform = ({step}) => {
                         <option value={+260}>+260 (Zambie)</option>
                         <option value={+263}>+263 (Zimbabwe)</option>
                       </select>
-                      <input type="tel" className="phone-number" placeholder="Votre numéro"/>
+                      <input type="tel" className="phone-number" placeholder="Votre numéro" onChange={(e) => {handlepass2(2); setInstitution(i => ({...i, contacts: e.target.value}));  console.log(e.target.value)}}/>
                     </div>
                     <h2>More information about you</h2>
-                    <textarea className="vitrine" placeholder="Put a Small description here"></textarea>
+                    <textarea className="vitrine" placeholder="Put a Small description here" onChange={(e) => setInstitution(i => ({...i, description: e.target.value}))}></textarea>
+                    <h2>How many members have you in your team</h2>
                     <ul className="Company size">
                         {['1-10', '11-20', '21-50', '51-100', '100+'].map((size) => (
                             <li
@@ -401,59 +621,129 @@ const Institution_inform = ({step}) => {
                         ))}
                     </ul>
                 </div>
-                <button onClick={() => step(4)}>Continue</button>
+                <button onClick={() => {if (pass2[1] == pass2[2] == true) {step(4)}}}>Continue</button>
             </div>
         </div>
     )
 }
 
-const Welcome = () => {
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const [height, setHeight] = React.useState(window.innerHeight);
+const Welcome = ({ institutions, user }) => {
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+    const [top, setTop] = useState(false);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    React.useEffect(() => {
+    const registerUser = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res1 = await axios.post(`${process.env.REACT_APP_API_URL}/institutions`, institutions);
+            let responseData = res1.data;
+
+            if (typeof responseData === 'string') {
+                const prefix = '/institutions';
+                if (responseData.startsWith(prefix)) {
+                    responseData = responseData.substring(prefix.length);
+                }
+                responseData = JSON.parse(responseData);
+            }
+
+            console.log("res1 value", responseData.institution);
+            if (responseData.institution) {
+                const institutionId = responseData.institution.institution_id;
+                const res2 = await axios.post(`${process.env.REACT_APP_API_URL}/Users`, { ...user, institution_id: institutionId });
+
+                if (res2.status === 200) {
+                    setTop(true);
+                    console.log("User registered successfully!");
+                } else {
+                    setTop(false)
+                    setError("User registration failed. Please try again.");
+                    setTop(false);
+                }
+            } else {
+                setError("Institution creation failed: " + (responseData.error || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+            if (error.response) {
+                setError(`Error: ${error.response.data.message || error.response.statusText}`);
+            } else if (error.request) {
+                setError("Network error: Unable to reach the server.");
+            } else {
+                setError("An unexpected error occurred.");
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!top) {
+            registerUser();
+        }
         const handleResize = () => {
             setWidth(window.innerWidth);
             setHeight(window.innerHeight);
         };
+        
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [top]);
 
     const props = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } });
-
+    
     return (
         <div className="Container3" style={{ position: 'relative', overflow: 'hidden' }}>
             <Confetti width={width} height={height} />
             <animated.div style={props}>
-                <img src="assets/success_registration.png" alt="Registration Success" />
-                <div>You have been registered successfully!</div>
-                <a href="/Home">Begin in your presence app</a>
+                {loading ? (
+                    <div>Loading...</div>
+                ) : error ? (
+                    <div style={{ color: 'red' }}>{error}</div>
+                ) : (
+                    <>
+                        <img src="assets/success_registration.png" alt="Registration Success" />
+                        <div>You have been registered successfully!</div>
+                        <a href="/Home">Begin in your presence app</a>
+                    </>
+                )}
             </animated.div>
         </div>
     );
 };
 
 
+
 const Register = () => {
     const [step, setStep] = useState(0);
     const [institutionStatus, setInstitutionStatus] = useState('');
-
+    const [status, setStatus] = useState('');
+    const [pack, setPack] = useState();
     const myChange = (status) => {
         setInstitutionStatus(status);
     };
+    const [institutions, setInstitutions] = useState({name: '', status: 'others', description: 'no description available', pack: '', contacts: 0, team_number: 0});
+    const [user, setUser] = useState({name: '', email: '', role: '', password: ''});
 
     switch (step) {
         case 0:
-            return <InstitutionType step={setStep} ichange={myChange} />;
+            return <InstitutionType step={setStep} ichange={myChange} setInstitution={setInstitutions}/>;
         case 1:
-            return <UserStatus type={institutionStatus} step={setStep} />;
+            return <UserStatus type={institutionStatus} step={setStep} setstatus={setStatus} setUser={setUser}/>;
         case 2:
-            return <CreateNewAccount step={setStep}/>
+            return <CreateNewAccount step={setStep} status={status} setInstitution={setInstitutions} setUser={setUser}/>
         case 3:
-            return <Institution_inform step = {setStep}/>
+            return <Institution_inform step = {setStep} setInstitution={setInstitutions}/>
         case 4:
-            return <Welcome step = {setStep}/>
+            return <Proposed_pack step={setStep} setpack={setPack} setInstitution={setInstitutions}/>
+        case 5:
+            return <Welcome step = {setStep} institutions={institutions} user={user}/>
+        case 6:
+            return <Userform step={setStep} status={status} setUser={setUser}/>
+        case 7:
+            return <Request_to_institution institutions={institutions} user={user}/>
         default:
             return null;
     }

@@ -1,5 +1,5 @@
 <?php
-$id_to_delete = $_GET['id']; // Récupérez l'ID depuis l'URL
+$id_to_delete = $_GET['id'];
 
 $sql = "DELETE FROM Institutions WHERE id = $id_to_delete";
 

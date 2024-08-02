@@ -1,5 +1,5 @@
 // src/mirage.js
-import { createServer, Model, Factory, RestSerializer, Response} from 'miragejs';
+/*import { createServer, Model, Factory, RestSerializer, Response} from 'miragejs';
 
 export function my_virtual_server({ environment = 'development' } = {}) {
   return createServer({
@@ -28,6 +28,12 @@ export function my_virtual_server({ environment = 'development' } = {}) {
         name(i) {
           return `Institution ${i}`;
         },
+        photo(i) {
+          return (i % 2 == 0) ? `/assets/university.png` : `image ${i}`
+        },
+        description(i) {
+          return  `description ${i} Les êtres humains vivent tous basant leurs croyances en ces qu'ils comprennent du monde, puis ensuite ils nomment cette perception: réalité. Pourtant le savoir et la compréhension ne sont que des concepts subjectifs, cette réalité pourrait s'avérer n'être qu'une simple illusion.`;
+        }
       }),
       group: Factory.extend({
         name(i) {
@@ -100,10 +106,21 @@ export function my_virtual_server({ environment = 'development' } = {}) {
     },
 
     routes() {
-      this.namespace = 'api';
+      this.namespace = '';
 
       this.get('/institutions', (schema) => {
         return schema.institutions.all();
+      });
+
+      this.get('/institutions/search', (schema, request) => {
+        const name = request.queryParams.name;
+        if (name) {
+          const filteredInstitutions = schema.institutions.all().models.filter(institution => 
+            institution.name.toLowerCase().includes(name.toLowerCase())
+          );
+          return { institutions: filteredInstitutions };
+        }
+        return { institutions: [] };
       });
 
       this.get('/institutions/:id', (schema, request) => {
@@ -387,3 +404,4 @@ export function my_virtual_server({ environment = 'development' } = {}) {
     },
   });
 }
+*/

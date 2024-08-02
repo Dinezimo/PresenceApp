@@ -220,6 +220,14 @@
     transform: translate(0, 8px);
   }
 }
+
+.error-message {
+  color: rgb(194, 30, 93);
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
 .my_mail:hover {
   background: #ccc;
 }
