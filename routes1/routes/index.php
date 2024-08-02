@@ -1,5 +1,6 @@
 <?php
-$type = $_SERVER["REQUEST_URI"];
+$requestUri = $_SERVER['REQUEST_URI'];
+$type = parse_url($requestUri, PHP_URL_PATH);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -18,6 +19,12 @@ switch ($type) {
         break;
     case "/institutions":
         include "Institutions/create_new_institution.php";
+        break;
+    case "/send_request":
+        include "notifications/create_new_notification.php";
+        break;
+    case "/search_institution":
+        include "Institutions/get_institutions_name.php";
         break;
     default:
         http_response_code(404);

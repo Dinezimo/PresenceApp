@@ -4,6 +4,8 @@ import './RegisterPage.css'
 import Confetti from 'react-confetti';
 import { useSpring, animated } from '@react-spring/web';
 import { useNavigate } from 'react-router';
+import Loading_page from '../components/common/loading_page.js';
+import InstitutionSearch from '../components/search/Search';
 
 const InstitutionType = ({ step, ichange, setInstitution}) => {
     const [sel1, setSel1] = useState(false);
@@ -187,53 +189,7 @@ if (status == "r2") {
         </div>
     );
 } else if (status == 'r1') {
-    return (
-        <div className="container5" onClick={handleOutsideClick}>
-      <div className="image_block">
-        <img src="/assets/Teamate.png" alt="Teamate" />
-      </div>
-      <div className="account_block">
-        <h1>Join an Institution</h1>
-        <div className="inputs">
-          <span className="material-symbols-outlined">search</span>
-          <input
-            type="text"
-            className="search_input"
-            placeholder="Search for an institution"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="institution-list">
-          {institutions.length > 0 ? (
-            institutions.map((institution) => (
-              <div
-                key={institution.id}
-                className="institution-item"
-                onClick={() => handleInstitutionClick(institution)}
-              >
-                <img src={institution.photo} alt={`${institution.name} logo`} className="institution-photo" />
-                <div className="institution-info">
-                  <h2>{institution.name}</h2>
-                  <p>{institution.description.slice(0, 50)}...</p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="no-results">No results found</p>
-          )}
-        </div>
-        {selectedInstitution && (
-          <div className="institution-details">
-            <h2>{selectedInstitution.name}</h2>
-            <img src={selectedInstitution.photo} alt={`${selectedInstitution.name} logo`} />
-            <p>{selectedInstitution.description}</p>
-            <button onClick={() => {handleSelectClick(); step(7); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password})); setInstitution(i => ({...i, /*get the institution id */}))}}>Select</button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    return(<InstitutionSearch handleInstitutionClick ={handleInstitutionClick} step={step} setUser={setUser} setInstitution={setInstitution} formData={formData} handleOutsideClick={handleOutsideClick} handleSelectClick ={handleSelectClick}/>);
 };
 };
 
@@ -293,18 +249,61 @@ const Checkbox = ({ label, handlepass }) => (
     </div>
 );
 
-const Request_to_institution = ()=> {
+const Request_to_institution = ({ institutions, user }) => {
+    const [top, setTop] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (!top) {
+            const sendRequest = async () => {
+                try {
+                    const res = await axios.post(
+                        `${process.env.REACT_APP_API_URL}/send_request`, 
+                        { input: institutions.name, email: user.email, name: user.name },
+                        { headers: {'Content-Type': 'application/json'} }
+                    );
+                    if (res.status === 200) {
+                        console.log("many pubs", res.data);
+                        if (res.data.error) {
+                            console.error(res.data.error);
+                            setError(res.data.error);
+                        } else {
+                            console.log(res.data.success);
+                            setTop(true);
+                        }
+                    } else {
+                        setError('Failed to send request.');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    setError('An error occurred while sending the request.');
+                } finally {
+                    setLoading(false);
+                }
+            };
+            sendRequest();
+        }
+    }, [top, institutions.name, user.email, user.name]);
+
+    if (loading) {
+        return <Loading_page />;
+    }
+    if (error) {
+        return <div>{error}</div>;
+    }
     return (
-    <div className='container6'>
-        <div className='image_block'>
-            <img src='./assets/usermailsendig.png'></img>
+        <div className='container6'>
+            <div className='image_block'>
+                <img src='./assets/usermailsendig.png' alt='Mail Sending' />
+            </div>
+            <div className='request_block'>
+                <h1>Your request has been sent</h1>
+                <a href='/login'>Begin with Presence App</a>
+            </div>
         </div>
-        <div className='request_block'>
-            <h1>Your Request have been send</h1>
-            <a href='/login'>Begin with presence app</a>
-        </div>
-    </div>);
-}
+    );
+};
 
 const Proposed_pack = ({step, setpack , setInstitution}) => {
     const [selectedRole, setSelectedRole] = useState(null);

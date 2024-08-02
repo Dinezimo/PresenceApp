@@ -159,3 +159,4 @@ CREATE TABLE Beacons (
 );
 
 ALTER TABLE Institutions MODIFY pack VARCHAR(50);
+ALTER TABLE Notifications ADD UNIQUE (user_id, message);

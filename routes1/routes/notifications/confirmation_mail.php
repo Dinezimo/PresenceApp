@@ -17,8 +17,8 @@
         $stmt->fetch();
         return $count > 0;
     }
-    if (isset($_GET['institution_name'])){
-        $name = $_GET['institution_name'];
+    if (isset($_GET['name'])){
+        $name = $_GET['name'];
     do {
         $newPassword = generateRandomPassword();
     } while (passwordExists($newPassword, $con));
