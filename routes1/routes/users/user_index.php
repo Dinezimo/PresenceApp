@@ -1,8 +1,6 @@
 <?php
 include "db_conn.php";
 
-echo "I have reach this level";
-
 $method = $_SERVER["REQUEST_METHOD"];
 
 switch ($method) {

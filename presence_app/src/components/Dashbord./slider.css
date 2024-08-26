@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 250px;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+.sidebar {
+    background-color: #4B68FF;
+    width: 250px;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        height: 95vh;
+        position: absolute;
+        z-index: 2006;
+
+    }
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar nav ul li:hover {
+    background-color: #096beb;
+    transform: scale(1.05);
+}
+
+.sidebar .logout-button {
+    margin-top: 20px;
+    background-color: #f71326;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+/*
+.input-wrappe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.input {
+    border-radius: 50%;
+    border-style: none;
+    height: 25px;
+    width: 25px;
+    outline: none;
+    transition: 0.5s ease-in-out;
+    background-color: #007bff;
+    color: black;
+}
+
+input::placeholder,
+input {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-size: 13px;
+}
+
+.input::placeholder {
+    color: #8f8f8f;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;;
+    outline: none;
+    border-style: none;
+    background-color: transparent;
+    transition: 0.2s linear;
+    color: black;
+}
+
+.icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.icon:hover .search-label {
+    display: block;
+}
+
+.search-label {
+    display: none;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: black;
+}
+
+.icon:focus ~ input,
+input:focus {
+    box-shadow: none;
+    width: 250px;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 3px solid #1557c0;
+    transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
+}
+*/

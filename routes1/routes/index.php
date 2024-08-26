@@ -26,6 +26,9 @@ switch ($type) {
     case "/search_institution":
         include "Institutions/get_institutions_name.php";
         break;
+    case "/Register":
+        include "users/user_index.php";
+        break;
     default:
         http_response_code(404);
         echo "404 Not Found";

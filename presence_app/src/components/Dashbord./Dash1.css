@@ -1,0 +1,760 @@
+.my_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+}
+
+.no_slider {
+    width: 100%;
+    margin: 20px;
+
+    .body {
+        display: flex;
+        width: 10%;
+    }
+
+    .userCard {
+        background-color: #ffffff; 
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 20px;
+        width: 100%;
+      }
+      .group_card {
+        height: 70vh;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .card-head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        .card_head_Right {
+          display: flex;
+          flex-direction: row;
+        }
+    }
+    
+    .card-head h2 {
+        font-size: 16px;
+        margin: 0;
+        font-weight: 600;
+    }
+    
+    .Add_button {
+        display: flex;
+        align-items: center; /* Center items vertically */
+    }
+    
+    .Add_button .btn {
+        background-color: #007bff; /* Button background color */
+        color: white; /* Button text color */
+        border: none; /* No border */
+        border-radius: 4px; /* Rounded corners */
+        padding: 8px 12px; /* Padding for the button */
+        cursor: pointer; /* Pointer cursor on hover */
+        margin-left: 10px; /* Space between checkbox and button */
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column; /* Stack rows vertically */
+    }
+    
+    .Row {
+        display: flex;
+        justify-content: space-between; /* Space between info and button */
+        align-items: center; /* Center items vertically */
+        padding: 10px 0; /* Padding for each row */
+        border-bottom: 1px solid #e0e0e0; /* Separator line */
+    }
+    
+    .Row:last-child {
+        border-bottom: none; /* Remove border for the last row */
+    }
+    
+    .group_infos {
+        display: flex;
+        align-items: center; /* Center items vertically */
+    }
+    
+    .group_infos img {
+        width: 40px; /* Size of the group image */
+        height: 40px; /* Size of the group image */
+        border-radius: 50%; /* Make it circular */
+        margin-right: 10px; /* Space between image and name */
+    }
+
+    .Row .group_infos {
+      display: flex;
+      align-items: center; /* Center items vertically */
+      transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 95%;
+    }
+    
+    /* Group Image */
+    .Row .group_infos img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: transform 0.3s; /* Smooth transition for image hover effect */
+    }
+    
+    /* Hover Effect on group_infos */
+    .Row .group_infos:hover {
+      transform: translateY(-3px); /* Slightly lift the group info on hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+      background-color: #f7f7f7; /* Light background color on hover */
+    }
+    
+    /* Hover Effect on Image */
+    .Row .group_infos:hover img {
+      transform: scale(1.1); /* Slightly enlarge the image on hover */
+    }
+    
+    /* Optional Additional Details on Hover (e.g., tooltips or extra text) */
+    .Row .group_infos .additional-info {
+      display: none; /* Hide additional info by default */
+      margin-left: 10px;
+      color: #007bff; /* Optional text color */
+      font-size: 14px; /* Font size for additional info */
+    }
+    
+    .Row .group_infos:hover .additional-info {
+      display: inline-block; /* Show additional info on hover */
+    }
+    .button {
+        background-color: transparent; /* Transparent background */
+        border: none; /* No border */
+        cursor: pointer; /* Pointer cursor on hover */
+        display: flex; /* Flexbox for SVG icons */
+        align-items: center; /* Center items vertically */
+    }
+    
+    .svgIcon {
+        width: 20px; /* Size of the SVG icon */
+        height: auto; /* Maintain aspect ratio */
+        margin-left: 5px; /* Space between icons */
+    }
+    .Add_button {
+        --background: #007bff;
+        --icon-color: #414856;
+        --shape-color-01: #b8cbee;
+        --shape-color-02: #7691e8;
+        --shape-color-03: #fdd053;
+        --width: 30px;
+        --height: 25px;
+        --border-radius: var(--height);
+        width: var(--width);
+        height: var(--height);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            position: absolute;
+            z-index: 5;
+            opacity: 0;
+          }
+      }
+    
+      .Add_button .btn {
+        background: var(--background);
+        width: var(--width);
+        height: var(--height);
+        position: relative;
+        z-index: 3;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-animation: plus-animation-reverse 0.5s ease-out forwards;
+        animation: plus-animation-reverse 0.5s ease-out forwards;
+      }
+      
+      .Add_button .btn::before,
+      .Add_button .btn::after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 4px;
+        background: #fff;
+      }
+      .Add_button .btn::before {
+        width: 2px;
+        height: 14px;
+      }
+      .Add_button .btn::after {
+        width: 14px;
+        height: 2px;
+      }
+      .Add_button .tooltip {
+        width: fit-content;
+        height: 75px;
+        border-radius: 70px;
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+        padding: 20px 0px;
+        box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+        opacity: 0;
+        top: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        transition: opacity 0.15s ease-in, top 0.15s ease-in, width 0.15s ease-in;
+      }
+      .Add_button .tooltip > span {
+        position: relative;
+        width: 100%;
+        white-space: nowrap;
+        opacity: 0;
+      }
+      .Add_button .tooltip > svg {
+        width: 100%;
+        height: 26px;
+        display: block;
+        justify-content: space-around;
+        align-items: center;
+        cursor: pointer;
+      }
+      .Add_button .tooltip > svg .icon {
+        fill: none;
+        stroke: var(--icon-color);
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.4;
+        transition: opacity 0.3s ease;
+      }
+      .Add_button .tooltip > svg:hover .icon {
+        opacity: 1;
+      }
+      .Add_button .tooltip::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50px;
+        position: absolute;
+        left: 50%;
+        margin-left: -10px;
+        bottom: -8px;
+        transform: rotate(45deg);
+        z-index: 0;
+      }
+      .Add_button > svg {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        z-index: 1;
+        transform: scale(0);
+      }
+      .Add_button > svg .shape {
+        fill: none;
+        stroke: none;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform-origin: 50% 20%;
+      }
+      
+}
+
+.header {
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    height: 70px;
+    background-color: #f5f5f5; /* Light background color */
+    border-bottom: 2px solid #e0e0e0; /* Bottom border for separation */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header h2 {
+    font-size: 20px; /* Font size for the title */
+    color: #ffffff;
+    margin: 0; /* Remove default margin */
+}
+
+.Notification-profile {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  .image {
+    border-radius: 50%;
+    border: solid 2px white;
+  }
+}
+
+.Notification-profile img {
+  border: solid 4px black;
+    width: 20px; /* Size of the authority image */
+    height: 20px; /* Size of the authority image */
+    border-radius: 50%; /* Make it circular */
+    margin: 5px;
+}
+
+.header .notification-icon {
+  margin-top: 10px;
+  border-radius: 50%;
+    font-size: 15px; /* Size of the notification bell */
+    cursor: pointer;
+    color: #333;
+}
+
+  @-webkit-keyframes pang-animation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pang-animation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes plus-animation {
+    0% {
+      transform: rotate(0) scale(1);
+    }
+    20% {
+      transform: rotate(60deg) scale(0.93);
+    }
+    55% {
+      transform: rotate(35deg) scale(0.97);
+    }
+    80% {
+      transform: rotate(48deg) scale(0.94);
+    }
+    100% {
+      transform: rotate(45deg) scale(0.95);
+    }
+  }
+  @keyframes plus-animation {
+    0% {
+      transform: rotate(0) scale(1);
+    }
+    20% {
+      transform: rotate(60deg) scale(0.93);
+    }
+    55% {
+      transform: rotate(35deg) scale(0.97);
+    }
+    80% {
+      transform: rotate(48deg) scale(0.94);
+    }
+    100% {
+      transform: rotate(45deg) scale(0.95);
+    }
+  }
+  @-webkit-keyframes plus-animation-reverse {
+    0% {
+      transform: rotate(45deg) scale(0.95);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    55% {
+      transform: rotate(10deg);
+    }
+    80% {
+      transform: rotate(-3deg);
+    }
+    100% {
+      transform: rotate(0) scale(1);
+    }
+  }
+  @keyframes plus-animation-reverse {
+    0% {
+      transform: rotate(45deg) scale(0.95);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    55% {
+      transform: rotate(10deg);
+    }
+    80% {
+      transform: rotate(-3deg);
+    }
+    100% {
+      transform: rotate(0) scale(1);
+    }
+  }
+  @-webkit-keyframes stretch-animation {
+    0% {
+      transform: scale(1, 1);
+    }
+    10% {
+      transform: scale(1.1, 0.9);
+    }
+    30% {
+      transform: scale(0.9, 1.1);
+    }
+    50% {
+      transform: scale(1.05, 0.95);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  @keyframes stretch-animation {
+    0% {
+      transform: scale(1, 1);
+    }
+    10% {
+      transform: scale(1.1, 0.9);
+    }
+    30% {
+      transform: scale(0.9, 1.1);
+    }
+    50% {
+      transform: scale(1.05, 0.95);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  
+  .socials {
+    position: fixed;
+    display: block;
+    left: 20px;
+    bottom: 20px;
+  }
+  .socials > a {
+    display: block;
+    width: 30px;
+    opacity: 0.2;
+    transform: scale(var(--scale, 0.8));
+    transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+  }
+  .socials > a:hover {
+    --scale: 1;
+  }
+
+  .Row {
+    .button {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #007bfff8;
+        border: none;
+        font-weight: 400;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+        cursor: pointer;
+        transition-duration: 0.3s;
+        overflow: hidden;
+        position: relative;
+        gap: 2px;
+      }
+      
+      .svgIcon {
+        width: 12px;
+        transition-duration: 0.3s;
+        margin-right: 5px;
+      }
+      
+      .svgIcon path {
+        fill: white;
+      }
+      
+      .button:hover {
+        transition-duration: 0.3s;
+        background-color: rgb(255, 69, 69);
+        align-items: center;
+        gap: 0;
+      }
+      
+      .bin-top {
+        transform-origin: bottom right;
+      }
+      .button:hover .bin-top {
+        transition-duration: 0.5s;
+        transform: rotate(160deg);
+      }      
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: 70px;
+    background-color: #4B68FF; /* Header background color */
+    color: white; /* White text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.Notification-profile img {
+    border: none; /* Remove border */
+    margin: 0; /* Remove margin */
+}
+
+.my_container {
+    display: flex;
+    flex-direction: row;
+    background-color: #f0f4f8; /* Light background for the entire container */
+    min-height: 100vh; /* Full height */
+}
+
+.no_slider {
+    width: 95%;
+    margin: 20px;
+    .body {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+
+.userCard, .group_card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    margin: 20px; /* Margin around the card */
+    padding: 20px; /* Padding inside the card */
+    transition: transform 0.2s; /* Smooth transition */
+}
+
+.userCard:hover, .group_card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.card-head h2 {
+    font-size: 26px; /* Slightly larger font size */
+    color: #333; /* Darker text color */
+    margin: 0; /* Remove default margin */
+}
+
+.Add_button {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.Add_button .btn {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 6px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-left: 10px; /* Space between checkbox and button */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.Add_button .btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column; /* Stack rows vertically */
+}
+
+.Row {
+    display: flex;
+    justify-content: space-between; /* Space between info and button */
+    align-items: center; /* Center items vertically */
+    padding: 12px 0; /* Padding for each row */
+    border-bottom: 1px solid #e0e0e0; /* Separator line */
+}
+
+.Row:last-child {
+    border-bottom: none; /* Remove border for the last row */
+}
+
+.group_infos {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.Row .group_infos:hover {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
+.group_infos img {
+    width: 50px; /* Size of the group image */
+    height: 50px; /* Size of the group image */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 15px; /* Space between image and name */
+}
+
+.button {
+   background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex; /* Flexbox for SVG icons */
+    align-items: center; /* Center items vertically */
+    transition: transform 0.3s; /* Smooth transition */
+    
+}
+
+.button:hover {
+    transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+.svgIcon {
+    width: 16px; /* Size of the SVG icon */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: 5px; /* Space between icons */
+}
+
+.navbar {
+    display: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+@media (max-width: 768px) {
+  .navbar {
+      display: flex;
+  }
+
+
+  .header {
+      display: none; 
+  }
+
+  .group_card {
+      flex: 1;
+  }
+  .my_container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    animation: slideInFromLeft 1sease-in;
+  }
+
+  .header {
+    display: none;
+  }
+  
+  .no_slider {
+    display: flex;
+    flex: 1;
+  }
+  
+  /*.sidebar {
+    background-color: #2C3E50;
+    color: #fff;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }*/
+  
+  
+  .body {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .group_card,
+  .userCard {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    .return-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background-color 0.3s;
+      justify-self: center;
+    }
+  }
+  
+  .group_infos img,
+  .group_infos h2 {
+    margin-right: 10px;
+  }
+  
+  .Row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .button {
+    background-color: #E74C3C;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+
+
+@keyframes slideInFromLeft {
+  from {
+      transform: translateX(0%);
+      opacity: 0;
+  }
+
+  to {
+      transform: translateX(100%);
+      opacity: 1;
+  }
+}

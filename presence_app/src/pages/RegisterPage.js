@@ -7,9 +7,23 @@ import { useNavigate } from 'react-router';
 import Loading_page from '../components/common/loading_page.js';
 import InstitutionSearch from '../components/search/Search';
 
-const InstitutionType = ({ step, ichange, setInstitution}) => {
+
+const InstitutionType = ({ step, ichange, setInstitution }) => {
     const [sel1, setSel1] = useState(false);
     const [sel2, setSel2] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [buttonColor, setButtonColor] = useState('initial');
+
+    const handleContinue = () => {
+        if (sel1 && sel2) {
+            setErrorMessage('');
+            step(1);
+        } else {
+            setErrorMessage('All inputs are required');
+            setButtonColor('red');
+        }
+    };
+
     return (
         <div className="container">
             <div className="image_bloc">
@@ -20,15 +34,15 @@ const InstitutionType = ({ step, ichange, setInstitution}) => {
                     <h2>Welcome, what brings you?</h2>
                     <div className="check_list">
                         <div className="check c1">
-                            <input type="checkbox" onChange={() => {ichange('Travail'); setSel1(true)}} />
+                            <input type="checkbox" onChange={() => { ichange('Travail'); setSel1(true); }} />
                             <h3>Travail</h3>
                         </div>
                         <div className="check c2">
-                            <input type="checkbox" onChange={() => {ichange('Etudes'); setSel1(true)}} />
+                            <input type="checkbox" onChange={() => { ichange('Etudes'); setSel1(true); }} />
                             <h3>Etudes</h3>
                         </div>
                         <div className="check c3">
-                            <input type="checkbox" onChange={() => {ichange('Personnel'); setSel1(true)}} />
+                            <input type="checkbox" onChange={() => { ichange('Personnel'); setSel1(true); }} />
                             <h3>Personnel</h3>
                         </div>
                     </div>
@@ -37,20 +51,25 @@ const InstitutionType = ({ step, ichange, setInstitution}) => {
                     <h2>How would you describe your current institution?</h2>
                     <div className="check_list">
                         <div className="check c1">
-                            <input type="checkbox" onChange={() => {ichange('Entreprise'); setSel2(true); setInstitution(i => ({...i, status: 'Entreprise'}))}}/>
+                            <input type="checkbox" onChange={() => { ichange('Entreprise'); setSel2(true); setInstitution(i => ({ ...i, status: 'Entreprise' })); }} />
                             <h3>Entreprise</h3>
                         </div>
                         <div className="check c2">
-                            <input type="checkbox" onChange={() => {ichange('School'); setSel2(true); setInstitution(i => ({...i, status: 'School'}))}} />
+                            <input type="checkbox" onChange={() => { ichange('School'); setSel2(true); setInstitution(i => ({ ...i, status: 'School' })); }} />
                             <h3>School or Campus</h3>
                         </div>
                         <div className="check c3">
-                            <input type="checkbox" onChange={() => {ichange('Other'); setSel2(true); setInstitution(i => ({...i, status: 'others'}))}} />
+                            <input type="checkbox" onChange={() => { ichange('Other'); setSel2(true); setInstitution(i => ({ ...i, status: 'others' })); }} />
                             <h3>Others</h3>
                         </div>
                     </div>
                 </div>
-                <button onClick={() => {if (sel1 && sel2) step(1)}}>Continue</button>
+                <button 
+                    onClick={handleContinue}
+                >
+                    Continue
+                </button>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <div className="login-section">
                     <span>Do you have an account?</span>
                     <a href="/login">Login</a>
@@ -59,6 +78,7 @@ const InstitutionType = ({ step, ichange, setInstitution}) => {
         </div>
     );
 };
+
 
 const UserStatus = ({type, step, setstatus, setUser}) => {
     const [selectedRole, setSelectedRole] = useState(null);
@@ -103,21 +123,8 @@ const CreateNewAccount = ({step, status, setInstitution, setUser}) => {
     const [selectedInstitution, setSelectedInstitution] = useState(null);
     const [pass, SetPass] = useState([false, false, false, false]);
     const nav = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
   
- /*   useEffect(() => {
-      const fetchInstitutions = async () => {
-        try {
-          const response = await axios.get(`/institutions/search`, {
-            params: searchTerm ? { name: searchTerm } : {},
-          });
-          setInstitutions(response.data.institutions);
-        } catch (error) {
-          console.error('Error fetching institutions:', error);
-        }
-      };
-      fetchInstitutions();
-    }, [searchTerm]);
-*/  
     const handleInstitutionClick = (institution) => {
       setSelectedInstitution(institution);
     };
@@ -142,51 +149,60 @@ const CreateNewAccount = ({step, status, setInstitution, setUser}) => {
         newpass[nb] = true;
         SetPass(newpass);
       }
-
+      const handleContinue = () => {
+        if (!formData.name || !formData.email || !formData.password || !pass[0]) {
+            setErrorMessage('Please fill in all fields and agree to the terms.');
+        } else {
+            setErrorMessage('');
+            step(3);
+            setUser(i => ({ ...i, name: formData.name, email: formData.email, password: formData.password }));
+        }
+    };
 if (status == "r2") {
     return (
         <div className="container2">
-            <div className="image-block">
-                <img src="./assets/Teamate.png" alt="Teamwork" />
+        <div className="image-block">
+            <img src="./assets/Teamate.png" alt="Teamwork" />
+        </div>
+        <div className="register-block">
+            <h1>Create a new account</h1>
+            <div className="inputs">
+                <InputField 
+                    type="text" 
+                    name="name" 
+                    placeholder="Full name" 
+                    value={formData.name} 
+                    onChange={(e) => { handleChange(e); handlepass(1); }} 
+                />
+                <InputField 
+                    type="email" 
+                    name="email" 
+                    placeholder="E-mail" 
+                    value={formData.email} 
+                    onChange={(e) => { handleChange(e); handlepass(2); }} 
+                />
+                <div className="pass">
+                    <InputField 
+                        type={visible ? "text" : "password"} 
+                        name="password" 
+                        placeholder="Password" 
+                        value={formData.password} 
+                        onChange={(e) => { handleChange(e); handlepass(3); }} 
+                    />
+                    <span className="toggle-visibility material-symbols-outlined icon" onClick={() => setVisible(!visible)}>
+                        {visible ? 'visibility' : 'visibility_off'}
+                    </span>
+                </div>
             </div>
-            <div className="register-block">
-                <h1>Create a new account</h1>
-                <div className="inputs">
-                    <InputField 
-                        type="text" 
-                        name="name" 
-                        placeholder="Full name" 
-                        value={formData.name} 
-                        onChange={(e) => {handleChange(e); handlepass(1)}} 
-                    />
-                    <InputField 
-                        type="email" 
-                        name="email" 
-                        placeholder="E-mail" 
-                        value={formData.email} 
-                        onChange={(e) => {handleChange(e); handlepass(2)}} 
-                    />
-                    <div className="pass">
-                        <InputField 
-                            type={visible ? "text" : "password"} 
-                            name="password" 
-                            placeholder="Password" 
-                            value={formData.password} 
-                            onChange={(e) => {handleChange(e); handlepass(3)}}
-                        />
-                        <span className="toggle-visibility material-symbols-outlined icon" onClick={() => setVisible(!visible)}>
-                            {visible ? 'visibility' : 'visibility_off'}
-                        </span>
-                    </div>
-                </div>
-                <Checkbox label="I agree to the Terms and Conditions" handlepass={handlepass}/>
-                <button onClick={() => {if (pass[1] == pass[2] == pass[3] == pass[4] == true) {step(3); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password}))}}}>Continue</button>
-                <div className="login-container">
-                    <span>Do you have an account?</span>
-                    <a href="/login">Login</a>
-                </div>
+            <Checkbox label="I agree to the Terms and Conditions" handlepass={handlepass} />
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <button onClick={handleContinue}>Continue</button>
+            <div className="login-container">
+                <span>Do you have an account?</span>
+                <a href="/login">Login</a>
             </div>
         </div>
+    </div>
     );
 } else if (status == 'r1') {
     return(<InstitutionSearch handleInstitutionClick ={handleInstitutionClick} step={step} setUser={setUser} setInstitution={setInstitution} formData={formData} handleOutsideClick={handleOutsideClick} handleSelectClick ={handleSelectClick}/>);
@@ -207,7 +223,7 @@ const Userform = ({step, status, setUser}) => {
     return (
         <div className="container2">
         <div className="image-block">
-            <img src="./assets/Teamate.png" alt="Teamwork" />
+            <img src="s/Teamate.png" alt="Teamwork" />
         </div>
         <div className="register-block">
             <h1>Create a new account</h1>
@@ -227,7 +243,7 @@ const Userform = ({step, status, setUser}) => {
                     onChange={handleChange} 
                 />
             </div>
-            <Checkbox label="I agree to the Terms and Conditions" />
+            <Checkbox2 label="I agree to the Terms and Conditions" />
             <button onClick={() => {step(7); setUser(i => ({...i, name: formData.name, email: formData.email, password: formData.password}))}}>Continue</button>
             <div className="login-container">
                 <span>Do you have an account?</span>
@@ -242,9 +258,16 @@ const InputField = ({ type, name, placeholder, value, onChange }) => (
     <input type={type} name={name} placeholder={placeholder} value={value} onChange={onChange} />
 );
 
-const Checkbox = ({ label, handlepass }) => (
+const Checkbox2 = ({label}) => (
     <div className="checkbox">
-        <input type="checkbox" onChange={() => handlepass(4)}/>
+        <input type="checkbox"/>
+        <label>{label}</label>
+    </div>
+);
+
+const Checkbox = ({label, handlepass}) => (
+    <div className="checkbox">
+        <input type="checkbox" onChange={() => handlepass(0)}/>
         <label>{label}</label>
     </div>
 );
@@ -254,44 +277,57 @@ const Request_to_institution = ({ institutions, user }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const sendRequest = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_URL}/send_request`, 
+                { input: institutions.name, email: user.email, name: user.name },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+            let responseData = res.data;
+            if (typeof responseData === 'string') {
+                const prefix = '/institutions';
+                if (responseData.startsWith(prefix)) {
+                    responseData = responseData.substring(prefix.length);
+                }
+                //responseData = JSON.parse(responseData);
+            }
+            if (responseData.error) {
+                setError(responseData.error);
+            } else {
+                setTop(true);
+            }
+        } catch (err) {
+            console.error(err);
+            setError('An error occurred while sending the request. Please check your connection and try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     useEffect(() => {
         if (!top) {
-            const sendRequest = async () => {
-                try {
-                    const res = await axios.post(
-                        `${process.env.REACT_APP_API_URL}/send_request`, 
-                        { input: institutions.name, email: user.email, name: user.name },
-                        { headers: {'Content-Type': 'application/json'} }
-                    );
-                    if (res.status === 200) {
-                        console.log("many pubs", res.data);
-                        if (res.data.error) {
-                            console.error(res.data.error);
-                            setError(res.data.error);
-                        } else {
-                            console.log(res.data.success);
-                            setTop(true);
-                        }
-                    } else {
-                        setError('Failed to send request.');
-                    }
-                } catch (err) {
-                    console.error(err);
-                    setError('An error occurred while sending the request.');
-                } finally {
-                    setLoading(false);
-                }
-            };
             sendRequest();
         }
     }, [top, institutions.name, user.email, user.name]);
-
+    console.log(error);
     if (loading) {
         return <Loading_page />;
     }
+
     if (error) {
-        return <div>{error}</div>;
-    }
+        return (
+            <div className="error-container">
+                <div className="error-message">
+                    <p>{error}</p>
+                    <button onClick={sendRequest}>Retry</button>
+                </div>
+            </div>
+        );
+    } else
     return (
         <div className='container6'>
             <div className='image_block'>
@@ -305,12 +341,25 @@ const Request_to_institution = ({ institutions, user }) => {
     );
 };
 
-const Proposed_pack = ({step, setpack , setInstitution}) => {
+
+const Proposed_pack = ({ step, setpack, setInstitution }) => {
     const [selectedRole, setSelectedRole] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleRoleClick = (role, st) => {
         setSelectedRole(role);
         setpack(st);
     };
+
+    const handleContinue = () => {
+        if (!selectedRole) {
+            setErrorMessage('Please select a package to continue.');
+        } else {
+            setErrorMessage('');
+            step(5);
+        }
+    };
+
     return (
         <div className="container1">
             <h1>Begin With Niska</h1>
@@ -318,83 +367,86 @@ const Proposed_pack = ({step, setpack , setInstitution}) => {
             <div className="role_containers">
                 <div 
                     className={`role_container r1 ${selectedRole === 'member' ? 'selected' : ''}`}
-                    onClick={() => {handleRoleClick('member', 'p1'); setInstitution(i => ({...i, pack: 'freepack'}))}}
+                    onClick={() => { handleRoleClick('member', 'p1'); setInstitution(i => ({...i, pack: 'freepack'})); }}
                 >
                     <img src="assets/freepack.jpg" alt="freepack" />
                     <h2>Simple presence</h2>
                     <ul>
                         <li>Secured presence by QR code or session code generation</li>
-                        <li>Secured presence with device camera authentification</li>
-                        <li>Possibility to add until 100 people in your group</li>
-                        <li>Maual activation</li>
-                        <li>downloadable repport</li>
+                        <li>Secured presence with device camera authentication</li>
+                        <li>Possibility to add up to 100 people in your group</li>
+                        <li>Manual activation</li>
+                        <li>Downloadable report</li>
                     </ul>
                 </div>
                 <div 
                     className={`role_container r2 ${selectedRole === 'admin' ? 'selected' : ''}`}
-                    onClick={() => {handleRoleClick('admin', 'p2'); setInstitution(i => ({...i, pack: 'avancedpack'}))}}
+                    onClick={() => { handleRoleClick('admin', 'p2'); setInstitution(i => ({...i, pack: 'advancedpack'})); }}
                 >
-                    <img src="assets/advancedpack.jpg" alt="avanced_pack" />
-                    <h2>advanced presence</h2>
+                    <img src="assets/advancedpack.jpg" alt="advanced_pack" />
+                    <h2>Advanced presence</h2>
                     <ul>
-                        <li>Possibility to integrate a beacons and a cameras service in addition to qr code and code session</li>
-                        <li>Possibility to have your entire institution structured tomany many groups</li>
-                        <li>Right to rooms, schendule, notifications</li>
-                        <li>Automatic activation, manual activation</li>
-                        <li>possibility to add custumize it about your needs by joining us</li>
+                        <li>Possibility to integrate beacons and camera services in addition to QR code and session code</li>
+                        <li>Ability to structure your entire institution into many groups</li>
+                        <li>Access to rooms, schedules, notifications</li>
+                        <li>Automatic and manual activation</li>
+                        <li>Customizable based on your needs by joining us</li>
                     </ul>
                 </div>
             </div>
-            <button onClick={() => {step(5)}}>Continue</button>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <button onClick={handleContinue}>Continue</button>
         </div>
     );
-}
-const Institution_inform = ({step , setInstitution}) => {
-
+};
+const Institution_inform = ({ step, setInstitution }) => {
     const [selectedSize, setSelectedSize] = useState(null);
     const [pass2, setPass2] = useState([false, false]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSizeClick = (size) => {
         setSelectedSize(size);
-        switch (size) {
-            case '1-10':
-                setInstitution(i => ({...i, team_number: '10'}));
-                break;
-            case '11-20':
-                setInstitution(i => ({...i, team_number: '20'}));
-                break;
-            case '21-50':
-                setInstitution(i => ({...i, team_number: '50'}));
-                break;
-            case '51-100':
-                setInstitution(i => ({...i, team_number: '100'}));
-                break;
-            case '100+':
-                setInstitution(i => ({...i, team_number: '101'}));
-                break;
-            default:
-                break;
-        };
-    }
+        setInstitution(i => ({ ...i, team_number: size === '100+' ? '101' : size.split('-')[1] }));
+    };
+
     const handlepass2 = (nb) => {
         const newpass = [...pass2];
         newpass[nb] = true;
         setPass2(newpass);
-      }
+    };
+
+    const handleContinue = () => {
+        if (!pass2[1] || !pass2[2] || !selectedSize) {
+            setErrorMessage('Please fill in all required fields.');
+        } else {
+            setErrorMessage('');
+            step(4);
+        }
+    };
+
     return (
         <div className="Container">
             <div className="bloc_img">
-                <img src="./login_back.png"></img>
+                <img src="./login_back.png" alt="Background" />
             </div>
             <div className="bloc_inst">
                 <h1>Tell me about your institutions</h1>
                 <h3>Help me to Create a best user experience for you</h3>
                 <div className="inputs">
                     <h2>Company name</h2>
-                    <input type="text" className="name" placeholder="Institution name" required onChange={(e) => {handlepass2(1); setInstitution(i => ({...i, name: e.target.value}))}}></input>
+                    <input
+                        type="text"
+                        className="name"
+                        placeholder="Institution name"
+                        required
+                        onChange={(e) => {
+                            handlepass2(1);
+                            setInstitution(i => ({ ...i, name: e.target.value }));
+                        }}
+                    />
                     <h2>Phone number and Location</h2>
                     <div className="phone-input">
-                      <select className="country-code">
+                        <select className="country-code">
                         <option value={+93}>+93 (Afghanistan)</option>
                         <option value={+355}>+355 (Albanie)</option>
                         <option value={+213}>+213 (Algérie)</option>
@@ -602,11 +654,23 @@ const Institution_inform = ({step , setInstitution}) => {
                         <option value={+967}>+967 (Yémen)</option>
                         <option value={+260}>+260 (Zambie)</option>
                         <option value={+263}>+263 (Zimbabwe)</option>
-                      </select>
-                      <input type="tel" className="phone-number" placeholder="Votre numéro" onChange={(e) => {handlepass2(2); setInstitution(i => ({...i, contacts: e.target.value}));  console.log(e.target.value)}}/>
+                        </select>
+                        <input
+                            type="tel"
+                            className="phone-number"
+                            placeholder="Your number"
+                            onChange={(e) => {
+                                handlepass2(2);
+                                setInstitution(i => ({ ...i, contacts: e.target.value }));
+                            }}
+                        />
                     </div>
                     <h2>More information about you</h2>
-                    <textarea className="vitrine" placeholder="Put a Small description here" onChange={(e) => setInstitution(i => ({...i, description: e.target.value}))}></textarea>
+                    <textarea
+                        className="vitrine"
+                        placeholder="Put a Small description here"
+                        onChange={(e) => setInstitution(i => ({ ...i, description: e.target.value }))}
+                    ></textarea>
                     <h2>How many members have you in your team</h2>
                     <ul className="Company size">
                         {['1-10', '11-20', '21-50', '51-100', '100+'].map((size) => (
@@ -620,11 +684,13 @@ const Institution_inform = ({step , setInstitution}) => {
                         ))}
                     </ul>
                 </div>
-                <button onClick={() => {if (pass2[1] == pass2[2] == true) {step(4)}}}>Continue</button>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
+                <button onClick={handleContinue}>Continue</button>
             </div>
         </div>
-    )
-}
+    );
+};
+
 
 const Welcome = ({ institutions, user }) => {
     const [width, setWidth] = useState(window.innerWidth);
@@ -639,7 +705,7 @@ const Welcome = ({ institutions, user }) => {
         try {
             const res1 = await axios.post(`${process.env.REACT_APP_API_URL}/institutions`, institutions);
             let responseData = res1.data;
-
+    
             if (typeof responseData === 'string') {
                 const prefix = '/institutions';
                 if (responseData.startsWith(prefix)) {
@@ -647,19 +713,17 @@ const Welcome = ({ institutions, user }) => {
                 }
                 responseData = JSON.parse(responseData);
             }
-
+    
             console.log("res1 value", responseData.institution);
             if (responseData.institution) {
                 const institutionId = responseData.institution.institution_id;
                 const res2 = await axios.post(`${process.env.REACT_APP_API_URL}/Users`, { ...user, institution_id: institutionId });
-
+    
                 if (res2.status === 200) {
-                    setTop(true);
+                    setTop(true); // Set top to true on successful registration
                     console.log("User registered successfully!");
                 } else {
-                    setTop(false)
                     setError("User registration failed. Please try again.");
-                    setTop(false);
                 }
             } else {
                 setError("Institution creation failed: " + (responseData.error || "Unknown error"));
@@ -677,19 +741,13 @@ const Welcome = ({ institutions, user }) => {
             setLoading(false);
         }
     };
-
+    
     useEffect(() => {
         if (!top) {
             registerUser();
         }
-        const handleResize = () => {
-            setWidth(window.innerWidth);
-            setHeight(window.innerHeight);
-        };
-        
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
     }, [top]);
+    
 
     const props = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } });
     

@@ -1,6 +1,9 @@
 <?php
 include "db_conn.php";
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $input = file_get_contents("php://input");
 $data = json_decode($input, true);
 
@@ -8,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_utilisateur = $data["name"];
     $email = $data["email"];
     $mot_de_passe = password_hash($data["password"], PASSWORD_DEFAULT);
-    $institution_id = $data["institution_id"];
-    $role = $data["role"] ?? 'userlite';
 
     $sql2 = "SELECT * FROM Users WHERE email = ?";
     $prepa2 = $conn->prepare($sql2);
@@ -18,17 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prepa2->store_result();
 
     if ($prepa2->num_rows > 0) {
-        echo "Erreur : L'email existe déjà.";
+        echo json_encode(["error" => "Error :  This email exist already."]);
     } else {
-        $sql = "INSERT INTO Users (institution_id, name, email, password, role) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Users (name, email, password) VALUES (?, ?, ?)";
         $prepa = $conn->prepare($sql);
-        $prepa->bind_param("issss", $institution_id, $nom_utilisateur, $email, $mot_de_passe, $role);
+        $prepa->bind_param("sss", $nom_utilisateur, $email, $mot_de_passe);
         
         if ($prepa->execute()) {
             echo http_response_code(200);
-            echo "Nouvel utilisateur créé avec succès !";
+            echo json_encode(["msg" => "New user created with succès !"]);
         } else {
-            echo "Erreur lors de la création de l'utilisateur : " . $prepa->error;
+            echo json_encode(["error" => "Error during account creation : " . $prepa->error]);
         }
         $prepa->close();
     }
