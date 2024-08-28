@@ -135,7 +135,7 @@ const Dash1 = ({params}) => {
                                     </div>
                                 ))}
                             </div>
-                            )};
+                            )}
                         {!isOn && (
                             <div className="card-body">
                             {member_group.map((g, index) => (
@@ -217,7 +217,7 @@ const Dash1 = ({params}) => {
                                         </button>
                                     </div>
                                     
-                                ))};
+                                ))}
                             </div>
                             {isMobile && (
                                 <button className="return-button" onClick={handleReturn}>
