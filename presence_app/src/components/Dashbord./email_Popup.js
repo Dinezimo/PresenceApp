@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Popup.css';
 
-const Popup = ({title, message, placeholder, type, onSubmit, onReturn}) => {
+const Popup = ({title, message, placeholder, type, onSubmit, onReturn, onBulk}) => {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e) => {
@@ -35,7 +35,7 @@ const Popup = ({title, message, placeholder, type, onSubmit, onReturn}) => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <button type="submit" className="submit">Submit</button>
-        <button className="submit" onClick={onReturn}>Bulk adding</button>
+        <button className="submit" onClick={onBulk}>Bulk adding</button>
         <button className="submit" onClick={onReturn}>Return</button>
       </form>
     </div>

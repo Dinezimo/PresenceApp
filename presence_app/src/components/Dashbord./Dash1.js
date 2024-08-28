@@ -5,9 +5,16 @@ import ConfirmationDialog from './Confirmation_card';
 import Slider from './slider';
 import Search_input from './search_input';
 import { useNavigate } from 'react-router';
+import Powerlever from './Interrupteur';
 
 const Dash1 = ({params}) => {
     const [groups, setGroups] = useState([
+        { photo: './assets/utilisateur.png', name: "Groupe1" },
+        { photo: './assets/utilisateur.png', name: "Groupe2" },
+        { photo: './assets/utilisateur.png', name: "Groupe3" },
+        { photo: './assets/utilisateur.png', name: "Groupe4" }
+    ]);
+    const [member_group, setMember_groups] = useState([
         { photo: './assets/utilisateur.png', name: "Groupe1" },
         { photo: './assets/utilisateur.png', name: "Groupe2" },
         { photo: './assets/utilisateur.png', name: "Groupe3" },
@@ -37,7 +44,7 @@ const Dash1 = ({params}) => {
     const handleReturn = () => {
         setSelectedGroup(null);
     };
-
+    const [isOn, setIsOn] = useState(true);
     return (
         <div className="my_container">
             {!isMobile && <Slider ind={2} />}
@@ -55,7 +62,7 @@ const Dash1 = ({params}) => {
                         <h2>Institution Name Dashboard</h2>
                         <div className='Notification-profile'>
                             <div className='image'>
-                                <img src='./assets/autorite.png' alt="Authority" onClick={() => go_to("/UserProfile")}/>
+                                <img src='./assets/autorite.png' alt="Authority" onClick={() => {params.group_profile_card()}}/>
                             </div>
                             <FaBell className="notification-icon"/>
                         </div>
@@ -65,7 +72,7 @@ const Dash1 = ({params}) => {
                     {(!isMobile || !selectedGroup) && (
                         <div className="group_card">
                             <div className="card-head">
-                                <h2>Your Groups</h2>
+                                <Powerlever top={"My Groups"} down={"Others Group"} isOn={isOn} setIsOn={setIsOn}/>
                                 <div className="card_head_Right">
                                     <Search_input ind={1} />
                                     <div className="Add_button" onClick={() => {params.addGroup(); console.log("won da mo")}}>
@@ -79,6 +86,7 @@ const Dash1 = ({params}) => {
                                     </div>
                                 </div>
                             </div>
+                            {isOn && (
                             <div className="card-body">
                                 {groups.map((g, index) => (
                                     <div className="Row" key={index} onClick={() => {handleGroupSelect(g)}}>
@@ -127,13 +135,29 @@ const Dash1 = ({params}) => {
                                     </div>
                                 ))}
                             </div>
+                            )};
+                        {!isOn && (
+                            <div className="card-body">
+                            {member_group.map((g, index) => (
+                                <div className="Row" key={index} onClick={() => params.viewgroup()}>
+                                    <div className="group_infos">
+                                        <img src={g.photo} alt={g.name} />
+                                        <h2>{g.name}</h2>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        )}
                         </div>
                     )}
-                    {selectedGroup && (
+                    {selectedGroup && isOn && (
                         <div className="userCard userCard1">
                             <div className="card-head">
                                 <h2>Your Members</h2>
                                 <div className="card_head_Right">
+                                    <div className='group_profile_icon' onClick={() => params.group_profile_card()}>
+                                        <img src='./assets/autorite.png'></img>
+                                    </div>
                                     <Search_input ind={1} />
                                     <div className="Add_button" onClick={params.addUser}>
                                         <input type="checkbox" />
@@ -193,7 +217,7 @@ const Dash1 = ({params}) => {
                                         </button>
                                     </div>
                                     
-                                ))}
+                                ))};
                             </div>
                             {isMobile && (
                                 <button className="return-button" onClick={handleReturn}>

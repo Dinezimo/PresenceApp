@@ -13,11 +13,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.8);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));
+    /*background: rgba(255, 255, 255, 0.8);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.8));*/
     opacity: 0.3; /* Invisible by default */
     transition: opacity 0.3s ease; /* Smooth transition */
     pointer-events: none; /* Disable interaction */   
+    background: rgba(0, 0, 0, 0.7);
 }
 
 Dash1 {

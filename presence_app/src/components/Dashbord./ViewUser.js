@@ -33,7 +33,6 @@ const UserProfileCard = ({ picture, userName, userMail, onCancel}) => {
         </div>
         <div className="bottom-bottom">
           <div className="social-links-container">
-            {/* SVG icons for social media links */}
             <svg viewBox="0 0 16 15.999" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
               <path
                 transform="translate(6 598)"

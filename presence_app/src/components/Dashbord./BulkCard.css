@@ -1,0 +1,84 @@
+.bulkContainer {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 10;
+    a {
+        text-decoration: none;
+        color: #ffffff;
+    }
+  }
+  
+  .bulkContainer:hover {
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .template {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .bulk_small_title {
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .bulk_small_illustration {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .bulk_small_illustration:hover {
+    transform: scale(1.05);
+  }
+  
+  .bulk_button {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .bulk_button button {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .bulk_button button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  
+  .bulk_button button:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  .bulk_button button:active {
+    transform: scale(0.98);
+  }
+  
+  

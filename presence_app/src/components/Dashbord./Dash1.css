@@ -745,8 +745,6 @@
   }
 }
 
-
-
 @keyframes slideInFromLeft {
   from {
       transform: translateX(0%);
@@ -757,4 +755,13 @@
       transform: translateX(100%);
       opacity: 1;
   }
+}
+
+.group_profile_icon img {
+  border: solid 2px #007bff;
+    width: 27px; /* Size of the authority image */
+    height: 27px; /* Size of the authority image */
+    border-radius: 50%; /* Make it circular */
+    margin: 5px;
+    translate: 0 -5px;
 }
