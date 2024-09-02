@@ -1,0 +1,150 @@
+.Repport_Container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+
+  .Repport_body {
+    padding: 20px;
+    background: #f4f7fc;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .repportHead1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .MineOrOthers {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  .TimeInterval {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+  }
+  
+  .TimeInterval li {
+    background: #ddd;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .TimeInterval li:hover {
+    background: #007bff;
+    color: white;
+  }
+  
+  /* Report List */
+  .ReportList {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ReportListHead {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .ReportListHead input,
+  .ReportListHead select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    height: 40px;
+  }
+  
+  .ReportListHead input:focus,
+  .ReportListHead select:focus {
+    border-color: #007bff;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead {
+    background: #007bff;
+    color: white;
+  }
+  
+  thead th {
+    padding: 10px;
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+  }
+  
+  tbody tr:hover {
+    background: #f4f7fc;
+  }
+  
+  tbody th {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  tbody img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .table-container {
+    max-height: 500px; /* Set the maximum height for the table, adjust as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+  
+  thead {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background: #007bff;
+    z-index: 1;
+  }
+  
+  tbody {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 350px;
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserDashboard from '../components/user/UserDashboard';
 import GroupDashboard from '../components/group/GroupDashboard';
-import InstitutionDashboard from '../components/institution/InstitutionDashboard';
+/*import InstitutionDashboard from '../components/institution/InstitutionDashboard';
 import StudentDashboard from '../components/student/StudentDashboard';
 
 const host = 'http://localhost:3000/';
@@ -54,3 +54,4 @@ const UserHomepage = () => {
 };
 
 export default UserHomepage;
+*/

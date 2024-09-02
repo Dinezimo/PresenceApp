@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import { FaTachometerAlt, FaFileAlt, FaUser, FaBell, FaSignOutAlt, FaBars, FaArrowLeft } from 'react-icons/fa';
 import { BiSolidBusiness } from 'react-icons/bi';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { CiViewList } from 'react-icons/ci';
 import './slider.css';
+import {useNavigate} from 'react-router';
 
 const Sidebar = ({ menuItems }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [menuOpen, setMenuOpen] = useState(false);
+    const NavTo = useNavigate();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -28,7 +30,7 @@ const Sidebar = ({ menuItems }) => {
                 <nav>
                     <ul>
                         {menuItems.map((item, index) => (
-                            <li key={index}>{item.icon} {item.label}</li>
+                            <li key={index} onClick={() => NavTo(`${item.link}`)}>{item.icon} {item.label}</li>
                         ))}
                     </ul>
                 </nav>
@@ -49,11 +51,11 @@ const Slider = ({ ind }) => {
     ];
 
     const menuItems2 = [
-        { label: 'Home', icon: <FaTachometerAlt /> },
-        { label: 'Groupes', icon: <BiSolidBusiness /> },
-        { label: 'Reports', icon: <FaBell /> },
-        { label: 'Lunch presence', icon: <FaFileAlt /> },
-        { label: 'Session Planning', icon: <CiViewList /> },
+        { label: 'Home', icon: <FaTachometerAlt />, link:  "/dashboard" },
+        { label: 'Groupes', icon: <BiSolidBusiness />, link: "/dashboard"},
+        { label: 'Reports', icon: <FaBell />, link: "/UserReport"},
+        { label: 'Launch presence', icon: <FaFileAlt />, link: "/LaunchPresence"},
+        { label: 'Session Planning', icon: <CiViewList/>,  link: "/PlanSession"},
         { label: 'Adhesion Requests', icon: <FaBell /> },
     ];
 

@@ -1,0 +1,150 @@
+/* Container for the list */
+.ListItselfContainer {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .ListTitle {
+    color: #007bff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Export and Informations button row */
+  .ListItselfExportRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .Informations,
+  .Export {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .Informations:hover,
+  .Export:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Scroll container for the table */
+  .TableScrollContainer {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Table styling */
+  .MyListTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+  
+  .MyListTable th,
+  .MyListTable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.9em;
+  }
+  
+  .MyListTable th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .MyListTableRow:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Profile image in the table */
+  .ProfileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  /* Status column styling */
+  .Status {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .Status.Present {
+    color: green;
+  }
+  
+  .Status.Absent {
+    color: red;
+  }
+  
+  /* Info Card styling */
+  .InfoCard {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .InfoCard h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #007bff;
+  }
+  
+  .InfoCard p {
+    margin: 10px 0;
+  }
+  
+  .CloseButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .CloseButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .ListItselfGobackButton {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .ListItselfGobackButton:hover {
+    background-color: #0056b3;
+  }

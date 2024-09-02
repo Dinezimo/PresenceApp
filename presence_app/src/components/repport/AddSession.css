@@ -1,0 +1,134 @@
+.add-cession-plan-container {
+    background-color: #f9f9f9; /* Light gray background for the container */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-cession-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.session-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.session-name h2 {
+    margin-bottom: 10px;
+    color: #333; /* Dark gray for text */
+}
+
+.session-name-input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.group-selection {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-selection h2 {
+    margin-bottom: 10px;
+    color: #333; /* Dark gray for text */
+}
+
+.group-dropdown {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #ffffff; /* White background for dropdown */
+}
+
+.gateway-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gateway-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: #ffffff; /* White background for gateway options */
+}
+
+.gateway-option:hover {
+    background-color: #007bff; /* Blue for hover effect */
+    color: #ffffff; /* White text for better contrast on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gateway-option h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.session-time {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.time-input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: auto;
+    font-size: 16px;
+}
+
+.session-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.add-session-button {
+    background-color: #007bff; /* Blue color for the add button */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-session-button:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+    transform: scale(1.05);
+}
+
+.cancel-session-button {
+    background-color: #dc3545; /* Red color for the cancel button */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cancel-session-button:hover {
+    background-color: #c82333; /* Darker red for hover effect */
+    transform: scale(1.05);
+}

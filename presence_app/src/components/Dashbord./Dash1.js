@@ -29,7 +29,6 @@ const Dash1 = ({params}) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
     const [showSidebar, setShowSidebar] = useState(false);
     const [selectedGroup, setSelectedGroup] = useState(null);
-    const go_to = useNavigate();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
