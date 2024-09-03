@@ -45,21 +45,18 @@
     color: #f3f3f3;
   }
   
-  /* Message styles */
   .confirmation-dialog p {
     font-size: 0.9rem;
     color: #888;
     margin-bottom: 20px;
   }
   
-  /* Button container */
   .confirmation-dialog .button-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
   }
   
-  /* Cancel button styles */
   .confirmation-dialog .cancel-button {
     background-color: #2f3446;
     border: 1px solid #2f3446;
@@ -75,9 +72,9 @@
     border-color: #3e475c;
   }
   
-  /* Confirm button styles */
+
   .confirmation-dialog .confirm-button {
-    background-color: #007bff; /* Adapted to blue */
+    background-color: #007bff;
     border: 1px solid #007bff;
     color: #f3f3f3;
     padding: 10px 20px;
@@ -91,7 +88,6 @@
     border-color: #006bde;
   }
   
-  /* Spacing between buttons */
   .confirmation-dialog .button-container button + button {
     margin-left: 10px;
   }

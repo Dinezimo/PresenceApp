@@ -53,7 +53,6 @@
     color: white;
   }
   
-  /* Report List */
   .ReportList {
     background: white;
     border-radius: 12px;
@@ -125,8 +124,8 @@
     margin-right: 10px;
   }
   .table-container {
-    max-height: 500px; /* Set the maximum height for the table, adjust as needed */
-    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: 500px;
+    overflow-y: auto;
   }
   
   thead {

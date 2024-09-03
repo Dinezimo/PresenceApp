@@ -66,10 +66,8 @@
     input[type="email"],
     input[type="password"] {
         padding: 15px;
-        /* Increased padding */
         margin-bottom: 15px;
         border: 2px solid #007bff;
-        /* Blue border */
         border-radius: 5px;
         font-size: 16px;
         transition: border-color 0.3s, box-shadow 0.3s;
@@ -79,9 +77,7 @@
     input[type="email"]:focus,
     input[type="password"]:focus {
         border-color: #0056b3;
-        /* Darker blue on focus */
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        /* Focus shadow */
     }
 
     input[name="password"] {
@@ -112,14 +108,12 @@
 
     .checkbox input {
         margin-right: 10px;
-        /* Space between checkbox and label */
     }
 
     button {
         background-color: #007bff;
         color: white;
         padding: 10px 20px;
-        /* Added horizontal padding */
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -133,7 +127,6 @@
     button:hover {
         background-color: #0056b3;
         transform: translateY(-2px);
-        /* Slight lift effect on hover */
     }
 
     h1 {

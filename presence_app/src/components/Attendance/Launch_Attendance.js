@@ -4,14 +4,15 @@ import { LiaQrcodeSolid } from "react-icons/lia";
 import { RiPhoneCameraFill } from "react-icons/ri";
 import Slider from "../Dashbord./slider";
 import { FaChevronDown,  FaChevronUp} from "react-icons/fa";
-import "./LauchPresence.css"
+import "./LauchPresence.css";
+import Header from "../Header";
+import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
 
 const LaunchPresence = () => {
     const [group, setGroup] = useState([
         { profile: "./assets/advancedpack.jpg", GroupName: "Royalty" },
         { profile: "./assets/advancedpack.jpg", GroupName: "Kings" },
     ]);
-
     const [selectedGroup, setSelectedGroup] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedGateway, setSelectedGateway] = useState(null);
@@ -29,12 +30,11 @@ const LaunchPresence = () => {
         <div className="LaunchPresenceContainerAndSlider">
             <Slider ind={2} />
             <div className="LaunchPresenceContainer">
+                <Header objet={<HeaderAnimation ind={1}/>} userProfile={"./assets/advancedpack.jpg"}/>
                 <div className="LaunchPresenceSesionName">
                     <h2>Your Session Name</h2>
                     <input className="LaunchPresenceSesionNameInput" type="text" placeholder="Review Meeting" />
                 </div>
-
-                {/* Custom Dropdown for Group Selection */}
                 <div className="LaunchPresenceSesionGroup">
                     <h2>Choose Your Group</h2>
                     <div className="custom-dropdown">
@@ -68,8 +68,6 @@ const LaunchPresence = () => {
                         )}
                     </div>
                 </div>
-
-                {/* Gateway Selection */}
                 <div className="launchPresenceSessionGateway">
                     <h2>Gateway</h2>
                     <div

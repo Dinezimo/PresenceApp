@@ -1,5 +1,5 @@
 .add-cession-plan-container {
-    background-color: #f9f9f9; /* Light gray background for the container */
+    background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -22,7 +22,7 @@
 
 .session-name h2 {
     margin-bottom: 10px;
-    color: #333; /* Dark gray for text */
+    color: #333;
 }
 
 .session-name-input {
@@ -40,7 +40,7 @@
 
 .group-selection h2 {
     margin-bottom: 10px;
-    color: #333; /* Dark gray for text */
+    color: #333;
 }
 
 .group-dropdown {
@@ -49,7 +49,7 @@
     border-radius: 8px;
     width: 100%;
     font-size: 16px;
-    background-color: #ffffff; /* White background for dropdown */
+    background-color: #ffffff;
 }
 
 .gateway-selection {
@@ -67,12 +67,12 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    background-color: #ffffff; /* White background for gateway options */
+    background-color: #ffffff;
 }
 
 .gateway-option:hover {
-    background-color: #007bff; /* Blue for hover effect */
-    color: #ffffff; /* White text for better contrast on hover */
+    background-color: #007bff;
+    color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -102,8 +102,8 @@
 }
 
 .add-session-button {
-    background-color: #007bff; /* Blue color for the add button */
-    color: #ffffff; /* White text */
+    background-color: #007bff;
+    color: #ffffff;
     border: none;
     padding: 12px 24px;
     cursor: pointer;
@@ -113,13 +113,13 @@
 }
 
 .add-session-button:hover {
-    background-color: #0056b3; /* Darker blue for hover effect */
+    background-color: #0056b3;
     transform: scale(1.05);
 }
 
 .cancel-session-button {
-    background-color: #dc3545; /* Red color for the cancel button */
-    color: #ffffff; /* White text */
+    background-color: #dc3545;
+    color: #ffffff;
     border: none;
     padding: 12px 24px;
     cursor: pointer;
@@ -129,6 +129,6 @@
 }
 
 .cancel-session-button:hover {
-    background-color: #c82333; /* Darker red for hover effect */
+    background-color: #c82333;
     transform: scale(1.05);
 }

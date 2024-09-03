@@ -12,7 +12,7 @@
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
     padding: 20px;
     background-color: var(--background-color);
     font-family: 'Arial', sans-serif;
@@ -20,16 +20,16 @@
 .image_bloc {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    flex: 0 0 40%; /* 40% width for image block */
+    flex: 0 0 40%;
     height: auto;
 }
 
 .image_bloc img {
-    max-height: 100%; /* Grow image within its block */
+    max-height: 100%;
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Rounded corners */
-    animation: shine 1.5s infinite; /* Apply shine animation */
+    border-radius: 10px;
+    animation: shine 1.5s infinite;
 }
 
 .InstitutionType_ {
@@ -38,7 +38,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    transition: transform 0.5s, opacity 0.5s; /* Animation on load */
+    transition: transform 0.5s, opacity 0.5s;
     animation: fadeIn 0.5s ease-in-out;
     height: auto;
 }
@@ -150,23 +150,23 @@ button {
     border: none;
     border-radius: 5px;
     color: white;
-    background-color: #007bff; /* Initial color */
+    background-color: #007bff;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
 }
 
 button:active {
-    transform: scale(0.98); /* Slight scale down on click */
+    transform: scale(0.98);
 }
 
 .error-message {
     color: red;
     margin-top: 10px;
-    animation: shake 0.3s; /* Optional animation for error message */
+    animation: shake 0.3s;
 }
 }
 .container1 {
@@ -378,10 +378,8 @@ button:active {
     input[type="email"],
     input[type="password"] {
         padding: 15px;
-        /* Increased padding */
         margin-bottom: 15px;
         border: 2px solid #007bff;
-        /* Blue border */
         border-radius: 5px;
         font-size: 16px;
         transition: border-color 0.3s, box-shadow 0.3s;
@@ -391,9 +389,7 @@ button:active {
     input[type="email"]:focus,
     input[type="password"]:focus {
         border-color: #0056b3;
-        /* Darker blue on focus */
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        /* Focus shadow */
     }
 
     input[name="password"] {
@@ -424,14 +420,12 @@ button:active {
 
     .checkbox input {
         margin-right: 10px;
-        /* Space between checkbox and label */
     }
 
     button {
         background-color: #007bff;
         color: white;
         padding: 10px 20px;
-        /* Added horizontal padding */
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -445,7 +439,6 @@ button:active {
     button:hover {
         background-color: #0056b3;
         transform: translateY(-2px);
-        /* Slight lift effect on hover */
     }
 
     h1 {
@@ -483,7 +476,7 @@ button:active {
     flex-direction: row;
     align-items: center;
     padding: 20px;
-    background-color: #f4f4f4; /* Softer background color */
+    background-color: #f4f4f4;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     animation: slideInFromTop 1s ease-out;
@@ -497,7 +490,7 @@ button:active {
         text-align: center;
         border-radius: 8px;
         padding: 20px;
-        background-color: #ffffff; /* White background for image block */
+        background-color: #ffffff;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         width: 80%;
         height: 100%;
@@ -798,20 +791,20 @@ button:active {
         border: 1px solid #ddd;
         border-radius: 4px;
         padding: 10px;
-        width: 100%; /* Full width */
+        width: 100%;
         background-color: #f9f9f9;
-        margin-bottom: 10px; /* Space below the input */
+        margin-bottom: 10px;
     }
     
     .institution-list {
-        max-height: 300px; /* Set a maximum height */
-        overflow-y: auto; /* Enable vertical scrolling */
-        border: 1px solid #ddd; /* Optional: add border for visibility */
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
         border-radius: 4px;
-        width: 100%; /* Full width */
-        background-color: #fff; /* Background color */
-        margin-top: 10px; /* Space above the list */
-        padding: 10px; /* Padding inside the list */
+        width: 100%;
+        background-color: #fff;
+        margin-top: 10px; 
+        padding: 10px;
     }
     
     .institution-item {
@@ -822,7 +815,7 @@ button:active {
     }
     
     .institution-item:hover {
-        background-color: #f0f0f0; /* Highlight on hover */
+        background-color: #f0f0f0;
     }    
   }
   

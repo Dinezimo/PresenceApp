@@ -8,6 +8,7 @@ import Slider from "../Dashbord./slider";
 import './SessionPlanning.css'
 import './AddSession.css'
 import Header from "../Header";
+import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
 
 const AddCessionInPlan = ({onCancel}) => {
     const [groups, setGroups] = useState([
@@ -100,7 +101,7 @@ const AddCessionInPlan = ({onCancel}) => {
         <Slider ind={2} />
         {!isAdding ? (
           <div className="session-planning">
-            <Header userProfile={'./assets/autorite.png'}></Header>
+            <Header userProfile={'./assets/autorite.png'} objet={<HeaderAnimation ind={3}/>}></Header>
             <div className="report-body">
               <div className="report-head"></div>
               <button className="add-button" onClick={() => setIsAdding(true)}>Add Session</button>

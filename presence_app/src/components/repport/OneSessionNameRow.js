@@ -48,20 +48,18 @@ const InfoCard = ({ session }) => (
   );
 
 const OneSessionTable = ({ sessions, onRemove }) => {
-    const [selectedSession, setSelectedSession] = useState(null); // Track selected session
-    const [isEditing, setIsEditing] = useState(false); // Track if in editing mode
-    const [clickedRowIndex, setClickedRowIndex] = useState(null); // Track which row is clicked
+    const [selectedSession, setSelectedSession] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [clickedRowIndex, setClickedRowIndex] = useState(null); 
   
     const handleRowClick = (session, index) => {
         if (clickedRowIndex === index) {
-          // If the same row is clicked again, close the InfoCard
           setSelectedSession(null);
           setClickedRowIndex(null);
         } else {
-          // Otherwise, open the InfoCard for the clicked row
           setSelectedSession(session);
           setClickedRowIndex(index);
-          setIsEditing(false); // Switch to info view
+          setIsEditing(false);
         }
       };
   
@@ -69,7 +67,7 @@ const OneSessionTable = ({ sessions, onRemove }) => {
       setSelectedSession(session);
       setIsEditing(true);
     };
-    
+
     const handleEditCancel = () => {
       setIsEditing(false);
     };
@@ -103,7 +101,7 @@ const OneSessionTable = ({ sessions, onRemove }) => {
                     <button
                       className="session-edit-button"
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent triggering row click
+                        e.stopPropagation();
                         handleEditClick(session);
                       }}
                     >
@@ -118,7 +116,6 @@ const OneSessionTable = ({ sessions, onRemove }) => {
                   </td>
                 </tr>
   
-                {/* Display InfoCard directly under the clicked row */}
                 {selectedSession && clickedRowIndex === index && !isEditing && (
                   <tr>
                     <td colSpan="6">
@@ -131,7 +128,6 @@ const OneSessionTable = ({ sessions, onRemove }) => {
           </tbody>
         </table>
   
-        {/* Display EditCard centered with a blurred background */}
         {selectedSession && isEditing && (
           <div className="edit-card-overlay">
             <EditCard session={selectedSession} onCancel={handleEditCancel} />

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1em; /* Space between ON, switch, and OFF */
+    gap: 1em;
 }
 
 .label {
@@ -15,15 +15,15 @@
 
 .label.active {
     color: white;
-    background-color: #007bff; /* Active state color */
+    background-color: #007bff;
 }
 
 .switch {
     font-size: 17px;
     position: relative;
     display: inline-block;
-    width: 3.5em; /* Adjust width to be horizontal */
-    height: 1.5em; /* Adjust height to be horizontal */
+    width: 3.5em; 
+    height: 1.5em;
 }
 
 .switch .chk {
@@ -41,17 +41,17 @@
     bottom: 0;
     background-color: #ccc;
     transition: .4s;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 15px; 
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 1em; /* Adjust height */
-    width: 1em; /* Adjust width */
-    border-radius: 50%; /* Make it circular */
-    left: 0.2em; /* Initial position of the circle */
-    top: 0.25em; /* Adjust top position */
+    height: 1em;
+    width: 1em;
+    border-radius: 50%; 
+    left: 0.2em; 
+    top: 0.25em; 
     background-color: white;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     transition: .4s;
@@ -73,7 +73,7 @@
 }
 
 .chk:checked + .slider {
-    background-color: #007bff; /* Updated active color */
+    background-color: #007bff;
 }
 
 .chk:focus + .slider {
@@ -81,5 +81,5 @@
 }
 
 .chk:checked + .slider:before {
-    transform: translateX(2em); /* Move the slider to the right */
+    transform: translateX(2em);
 }

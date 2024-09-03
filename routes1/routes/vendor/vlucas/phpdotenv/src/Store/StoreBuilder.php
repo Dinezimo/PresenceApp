@@ -8,40 +8,40 @@ use Dotenv\Store\File\Paths;
 
 final class StoreBuilder
 {
-    /**
+    *
      * The of default name.
      */
     private const DEFAULT_NAME = '.env';
 
-    /**
+    *
      * The paths to search within.
      *
      * @var string[]
      */
     private $paths;
 
-    /**
+    *
      * The file names to search for.
      *
      * @var string[]
      */
     private $names;
 
-    /**
+    *
      * Should file loading short circuit?
      *
      * @var bool
      */
     private $shortCircuit;
 
-    /**
+    *
      * The file encoding.
      *
      * @var string|null
      */
     private $fileEncoding;
 
-    /**
+    *
      * Create a new store builder instance.
      *
      * @param string[]    $paths
@@ -59,7 +59,7 @@ final class StoreBuilder
         $this->fileEncoding = $fileEncoding;
     }
 
-    /**
+    *
      * Create a new store builder instance with no names.
      *
      * @return \Dotenv\Store\StoreBuilder
@@ -69,7 +69,7 @@ final class StoreBuilder
         return new self();
     }
 
-    /**
+    *
      * Create a new store builder instance with the default name.
      *
      * @return \Dotenv\Store\StoreBuilder
@@ -79,7 +79,7 @@ final class StoreBuilder
         return new self([], [self::DEFAULT_NAME]);
     }
 
-    /**
+    *
      * Creates a store builder with the given path added.
      *
      * @param string $path
@@ -91,7 +91,7 @@ final class StoreBuilder
         return new self(\array_merge($this->paths, [$path]), $this->names, $this->shortCircuit, $this->fileEncoding);
     }
 
-    /**
+    *
      * Creates a store builder with the given name added.
      *
      * @param string $name
@@ -103,7 +103,7 @@ final class StoreBuilder
         return new self($this->paths, \array_merge($this->names, [$name]), $this->shortCircuit, $this->fileEncoding);
     }
 
-    /**
+    *
      * Creates a store builder with short circuit mode enabled.
      *
      * @return \Dotenv\Store\StoreBuilder
@@ -113,7 +113,7 @@ final class StoreBuilder
         return new self($this->paths, $this->names, true, $this->fileEncoding);
     }
 
-    /**
+    *
      * Creates a store builder with the specified file encoding.
      *
      * @param string|null $fileEncoding
@@ -125,7 +125,7 @@ final class StoreBuilder
         return new self($this->paths, $this->names, $this->shortCircuit, $fileEncoding);
     }
 
-    /**
+    *
      * Creates a new store instance.
      *
      * @return \Dotenv\Store\StoreInterface

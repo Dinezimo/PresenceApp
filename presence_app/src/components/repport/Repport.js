@@ -6,6 +6,8 @@ import { FaBell, FaBars } from 'react-icons/fa';
 import Slider from "../Dashbord./slider";
 import './Repport.css';
 import MyListItself from "./ListItself";
+import Header from "../Header";
+import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
 
 const OneReportRow = ({Reports, onClicke}) => {
   return (
@@ -114,15 +116,7 @@ const RepportDashboard = ({ params }) => {
       {showSidebar && isMobile && <Slider ind={2} />}
       <div className="no_slider">
         {!isMobile && (
-          <div className="header">
-            <h2>Institution Name Dashboard</h2>
-            <div className='Notification-profile'>
-              <div className='image'>
-                <img src='./assets/autorite.png' alt="Authority" onClick={() => { }} />
-              </div>
-              <FaBell className="notification-icon" />
-            </div>
-          </div>
+          <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"}/>
         )} 
         {!isListing ? (
         <div>
