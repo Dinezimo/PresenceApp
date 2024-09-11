@@ -56,7 +56,7 @@ const Slider = ({ ind }) => {
         { label: 'Reports', icon: <FaBell />, link: "/UserReport"},
         { label: 'Launch presence', icon: <FaFileAlt />, link: "/LaunchPresence"},
         { label: 'Session Planning', icon: <CiViewList/>,  link: "/PlanSession"},
-        { label: 'Adhesion Requests', icon: <FaBell /> },
+        { label: 'Adhesion Requests', icon: <FaBell />, link: "/AdhesionRequest" },
     ];
 
     return <Sidebar menuItems={ind === 1 ? menuItems1 : menuItems2} />;

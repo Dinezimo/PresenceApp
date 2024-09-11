@@ -57,14 +57,14 @@ const Register_form = () => {
     return (
         <div className="container2">
         <div className="image-block">
-            <img src="s/Teamate.png" alt="Teamwork" />
+            <img src="./assets/Teamate.png" alt="Teamwork" />
         </div>
         <div className="register-block">
             <h1>Create a new account</h1>
             <div className="inputs">
-                <InputField 
-                    type="text" 
-                    name="name" 
+                <InputField
+                    type="text"
+                    name="name"
                     placeholder="Full name" 
                     value={user.name} 
                     onChange={(e) => { handleChange(e); handlepass(1)}} 
