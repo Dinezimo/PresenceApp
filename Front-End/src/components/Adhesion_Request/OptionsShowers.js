@@ -5,6 +5,7 @@ import RequestTojoinMygroupTab from "./RequestToJoinMyGroup";
 import MyInvitationtoOtherTab from "./MyInvitationToOthers";
 import Slider from "../Dashbord./slider";
 import Header from "../Header";
+import UserProfile from "../user/UserProfile";
 import './OptionShower.css'
 
   const AdhesionOptionshower = () => {
@@ -14,7 +15,8 @@ import './OptionShower.css'
       { placeholder: "Requests to Join My Groups", tab: <RequestTojoinMygroupTab />, color: '#ffc107' },
       { placeholder: "Groups Requesting Me as a Member", tab: <GroupsRequestingMeasaMemberTab />, color: '#dc3545' }
     ]);
-  
+
+    const [isprofile, setIsprofile] = useState(false);
     // State to track the active tab and color
     const [activeIndex, setActiveIndex] = useState(0);
   
@@ -25,12 +27,13 @@ import './OptionShower.css'
   
     return (
     <div className="AdhesionOptionshowerContainerAndSlider">
+      {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
       <div className="Slider">
         <Slider ind={2}/>
       </div>
       <div className="AdhesionOptionshowerContainer">
         {/* Render the 2x2 grid of option cubes */}
-        <Header userProfile="./assets/advancedpack.jpg"/>
+        <Header userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
         <div className="grid-container">
           {options.map((option, index) => (
             <div

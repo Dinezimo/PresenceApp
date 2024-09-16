@@ -6,6 +6,7 @@ import Slider from './slider';
 import Search_input from './search_input';
 import { useNavigate } from 'react-router';
 import Powerlever from './Interrupteur';
+import { FaPaperPlane } from 'react-icons/fa';
 
 const Dash1 = ({params}) => {
     const [groups, setGroups] = useState([
@@ -74,7 +75,8 @@ const Dash1 = ({params}) => {
                                 <Powerlever top={"My Groups"} down={"Others Group"} isOn={isOn} setIsOn={setIsOn}/>
                                 <div className="card_head_Right">
                                     <Search_input ind={1} />
-                                    <div className="Add_button" onClick={() => {params.addGroup(); console.log("won da mo")}}>
+
+                                    {isOn ? <div className="Add_button" onClick={() => {params.addGroup(); console.log("won da mo")}}>
                                         <input type="checkbox" />
                                         <div className="btn" />
                                         <div className="tooltip">
@@ -82,7 +84,12 @@ const Dash1 = ({params}) => {
                                             <span>Hello World</span>
                                         </div>
                                         <svg />
-                                    </div>
+                                    </div> : (
+                                    <button className="flight-button" onClick={() => params.joinagroup()}>
+                                        <FaPaperPlane className="iconn" />
+                                        <span className="landing-message">Join another group</span>
+                                    </button>
+                                    )}
                                 </div>
                             </div>
                             {isOn && (

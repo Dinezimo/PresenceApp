@@ -26,7 +26,7 @@ const Sidebar = ({ menuItems }) => {
     return (
         <div className="Container">
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-                <h2>Institution Manager</h2>
+                <h2>Presence app</h2>
                 <nav>
                     <ul>
                         {menuItems.map((item, index) => (

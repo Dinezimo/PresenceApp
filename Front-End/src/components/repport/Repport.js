@@ -7,6 +7,7 @@ import Slider from "../Dashbord./slider";
 import './Repport.css';
 import MyListItself from "./ListItself";
 import Header from "../Header";
+import UserProfile from "../user/UserProfile";
 import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
 
 const OneReportRow = ({Reports, onClicke}) => {
@@ -84,6 +85,7 @@ const RepportDashboard = ({ params }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [MineOrOther, setMineOrOther] = useState(true);
   const [isListing, setIsListing] = useState(false);
+  const [isprofile, setIsprofile] = useState(false);
   const [Reports, setReports] = useState([
     { profile: "./assets/autorite.png", name: "Tepitech", time: "08:15", date: "17/06/24", group: "Tatakaé", gateway: 1 },
     { profile: "./assets/autorite.png", name: "Epitcétou", time: "09:15", date: "15/12/24", group: "TaicoTeam", gateway: 2 },
@@ -105,6 +107,7 @@ const RepportDashboard = ({ params }) => {
     
   return (
     <div className="Repport_Container">
+      {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
       {!isMobile && <Slider ind={2} />}
       {isMobile && (
         <div className="navbar">
@@ -116,8 +119,8 @@ const RepportDashboard = ({ params }) => {
       {showSidebar && isMobile && <Slider ind={2} />}
       <div className="no_slider">
         {!isMobile && (
-          <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"}/>
-        )} 
+          <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
+        )}
         {!isListing ? (
         <div>
         <div className="Repport_body">

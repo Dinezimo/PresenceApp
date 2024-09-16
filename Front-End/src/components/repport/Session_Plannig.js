@@ -8,6 +8,7 @@ import Slider from "../Dashbord./slider";
 import './SessionPlanning.css'
 import './AddSession.css'
 import Header from "../Header";
+import UserProfile from "../user/UserProfile";
 import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
 
 const AddCessionInPlan = ({onCancel}) => {
@@ -95,13 +96,14 @@ const AddCessionInPlan = ({onCancel}) => {
     };
     const [isAdding, setIsAdding] = useState(false);
     const [activeInterval, setActiveInterval] = useState('Today');
-  
+    const [isprofile, setIsprofile] = useState(false);
     return (
       <div className="session-planning-container">
+        {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
         <Slider ind={2} />
         {!isAdding ? (
           <div className="session-planning">
-            <Header userProfile={'./assets/autorite.png'} objet={<HeaderAnimation ind={3}/>}></Header>
+            <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
             <div className="report-body">
               <div className="report-head"></div>
               <button className="add-button" onClick={() => setIsAdding(true)}>Add Session</button>

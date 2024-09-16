@@ -103,7 +103,7 @@ const Input1 = () => {
     if (ind === 1) {
         return <Input1 />
     }
-    if (ind == 2)
+    if (ind === 2)
       return <Input2 placeholder={placeholder}/>
     }
 

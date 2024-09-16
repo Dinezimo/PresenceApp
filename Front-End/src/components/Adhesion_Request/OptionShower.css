@@ -55,8 +55,7 @@
     transition: background-color 0.3s ease;
 }
 
-/* Buttons */
-button {
+.AdhesionOptionshowerContainerAndSlider button {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -65,7 +64,7 @@ button {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-button:focus {
+.AdhesionOptionshowerContainerAndSlider button:focus {
     outline: none;
 }
 
@@ -137,7 +136,7 @@ button:focus {
 }
 
 /* Tooltip */
-.tooltip {
+.AdhesionOptionshowerContainerAndSlider .tooltip {
     position: relative;
     display: inline-block;
 }

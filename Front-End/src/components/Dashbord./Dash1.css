@@ -752,3 +752,40 @@
     margin: 5px;
     translate: 0 -5px;
 }
+
+.flight-button {
+  width: 100px; /* Adjust width as needed */
+  height: 30px; /* Adjust height as needed */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  margin-inline: 10px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Hide overflow for landing effect */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
+.iconn {
+  transition: transform 0.5s ease; /* Smooth transition for the icon */
+}
+
+.landing-message {
+  position: absolute;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s, transform 0.5s; /* For landing effect */
+  transform: translateY(20px); /* Start below the button */
+}
+
+.flight-button:hover .iconn {
+  transform: translateY(-30px); /* Flight effect */
+}
+
+.flight-button:hover .landing-message {
+  opacity: 1; /* Fade in the landing message */
+  transform: translateY(0); /* Move into position */
+}

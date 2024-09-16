@@ -6,6 +6,7 @@ import "./D1CardHandeler.css"
 import UserProfileCard from './ViewUser';
 import BulkCard from './BulkCard';
 import UserProfile from '../user/UserProfile';
+import SearchAndSelect from './SeacherAndSelector';
 
 const D1CardHandling = () => {
     const[removeGroupConfirmation, setRemoveGroupConfirmation] = useState(false);
@@ -19,6 +20,7 @@ const D1CardHandling = () => {
     const [addGroupBulking, setaddGroupBulking] = useState(false);
     const [UserProfileCard_, setUserProfileCard_] = useState(false);
     const [GroupProfileCard_, setGroupProfileCard_] = useState(false);
+    const [isJoinning, setIsJoining] = useState(false);
 
     return (
         <div className='CHandlerContainer'>
@@ -31,6 +33,7 @@ const D1CardHandling = () => {
             {addUserBulking && <BulkCard img_template={"./xlx_docs/BulkUserAddTemplate.png"} onReturn={()=> {setaddUserBulking(false); setBlur(false)}} downloadable={"./xlx_docs/BulkUserAddTemplate.xlsx"}/>}
             {GroupProfileCard_ && <UserProfile onClose={() => {setGroupProfileCard_(false); setBlur(false)}}/>}
             {GroupInfosCard && <UserProfileCard picture={"./assets/student.webp"} userName={"Nigtcore"} userMail={"Hokage@premature"} onCancel={() => {setGroupInfosCard(false); setBlur(false)}}/>}
+            {isJoinning && <SearchAndSelect groups={["tiakola", "ninho", "Ashaké", "burnaboy", "Omarlay", "Zebra", "Mhobad", "DidiB", "Himra"]} onReturn={() => {setIsJoining(false); setBlur(false)}}/>}
             <div className={`CH_overlay${blur ? '_blured': ''}`}>
                 <Dash1 params={{
                     rmGroup: () => {setRemoveGroupConfirmation(true);setBlur(true)},
@@ -40,7 +43,8 @@ const D1CardHandling = () => {
                     group_profile_card: () => {setGroupProfileCard_(true); setBlur(true)},
                     user_profile_card:  () => {setUserProfileCard_(true); setBlur(true)},
                     viewgroup:  () => {setGroupInfosCard(true); setBlur(true)},
-                    viewMember: () => {setUserInfosCard(true); setBlur(true)}}}/>
+                    viewMember: () => {setUserInfosCard(true); setBlur(true)},
+                    joinagroup: () => {setIsJoining(true); setBlur(true)}}}/>
             </div>
         </div>
     );
