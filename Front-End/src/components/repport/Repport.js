@@ -58,6 +58,7 @@ const OneReportRow2 = ({Reports}) => {
               <th>Status</th>
             </tr>
           </thead>
+          
           <tbody>
             {Reports.map((r) => (
               <tr key={r.name}>
@@ -104,10 +105,11 @@ const RepportDashboard = ({ params }) => {
     {status: 0, profile: "./assets/autorite.png", name: "Solo Stumper", time: "16:15", date: "18/06/24", group: "Hentaii club 🥰😏🙉", gateway: 1 },
     {status: 1, profile: "./assets/autorite.png", name: "Kick Off", time: "19:15", date: "25/01/24", group: "Barbarossa", gateway: 2 }
   ]);
-    
+  const [userProfile, setUserProfile] = useState(false);
+
   return (
     <div className="Repport_Container">
-      {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
+      {/*isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>*/}
       {!isMobile && <Slider ind={2} />}
       {isMobile && (
         <div className="navbar">
@@ -119,7 +121,7 @@ const RepportDashboard = ({ params }) => {
       {showSidebar && isMobile && <Slider ind={2} />}
       <div className="no_slider">
         {!isMobile && (
-          <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
+          <Header objet={<h2>All reports management</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setUserProfile(true)}/>
         )}
         {!isListing ? (
         <div>
@@ -145,20 +147,23 @@ const RepportDashboard = ({ params }) => {
               <option>All Way</option>
             </select>
           </div>
-          <div className="RepportListRowContainer">
-            {MineOrOther ? <OneReportRow Reports={Reports} onClicke={() => setIsListing(true)}/> : <OneReportRow2 Reports={othersReport}/>}
+          <div className="ScrollingPb"> {/*Handle scrolling*/}
+            <div className="RepportListRowContainer">
+              {MineOrOther ? <OneReportRow Reports={Reports} onClicke={() => setIsListing(true)}/> : <OneReportRow2 Reports={othersReport}/>}
+            </div>
           </div>
         </div>
         </div>) : <MyListItself onReturn={() => setIsListing(false)}/>}
       </div>
+      {userProfile && <UserProfile
+          bannerPicture={'./assets/advancedpack.jpg'}
+          profilePicture={'./assets/autorite.png'}
+          userName={'Free Palestine'}
+          userEmail={'dadadam@freepalestine'}
+          onClose={() => {setUserProfile(false)}}/>
+      }
     </div>
   );
 };
-
-const Test_components = () => {
-    return (
-        <DownloadButton />
-    )
-}
 
 export default RepportDashboard;

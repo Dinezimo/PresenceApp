@@ -33,7 +33,7 @@ const GroupsRequestingMeasaMemberTab = () => {
                             <td>{j.HisGroup}</td>
                             <td>{j.time}</td>
                             <td>{j.date}</td>
-                            <td>
+                            <td className="acptAndRefuseButton">
                               <button class="accept-btn">Accept</button>
                               <button class="decline-btn">Reject</button>
                             </td>

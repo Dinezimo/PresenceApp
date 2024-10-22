@@ -1,39 +1,4 @@
-.SearchAndSelectContainer {
-    width: 300px; /* Adjust width as needed */
-    background-color: #1a1a2e;
-    border: 1px solid #007bff;
-    border-radius: 5px; /* Optional: rounded corners */
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    z-index: 10;
-}
-
-.groupsAfterSort {
-    max-height: 150px; /* Limit height for overflow */
-    overflow-y: auto; /* Scroll if needed */
-}
-
-.group-item {
-    padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
-    color: #007bff; /* Item text color */
-}
-
-.group-item:hover {
-    background-color: #f0f8ff; /* Highlight on hover */
-}
-
-.no-results {
-    padding: 10px;
-    text-align: center;
-    color: #555; /* Color for no results message */
-}
-
+/*CardContainer*/
 
 .SearchAndSelectContainer {
     width: 300px;
@@ -52,6 +17,17 @@
     z-index: 10;
 }
 
+/*Card Content*/
+.groupsAfterSort {
+    max-height: 300px; /* Limit height for overflow */
+    overflow-y: auto; /* Scroll if needed */
+}
+
+.no-results {
+    padding: 10px;
+    text-align: center;
+    color: #555; /* Color for no results message */
+}
 .search-input {
     width: 100%;
     padding: 10px;
@@ -67,11 +43,24 @@
     border-color: #0056b3; /* Change border color on focus */
 }
 
+/*Card Rows*/
+.group-item {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #007bff; /* Item text color */
+}
+
+.group-item:hover {
+    background-color: #f0f8ff; /* Highlight on hover */
+}
+
 .group-item {
     padding: 10px;
     border-bottom: 1px solid #e0e0e0;
     color: white;
     transition: background-color 0.3s; /* Smooth transition */
+    display:  flex;
+    gap: 10px;
 }
 
 .group-item:hover {
@@ -84,3 +73,13 @@
     color: #aaa;
 }
 
+.group_profile_container {
+    width: 50px;
+    height: 50px;
+}
+
+.group_profile_img {
+    border-radius: 50%;
+    border:solid 1px #007bff;
+    width: 80%;
+}

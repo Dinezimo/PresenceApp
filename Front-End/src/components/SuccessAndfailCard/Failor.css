@@ -1,0 +1,266 @@
+.SuccessOrFailorContainer {
+  width: 320px;
+  height: fit-content;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 13px;
+  z-index: 10;
+  animation: fadeIn 0.5s ease-in-out, scaleIn 0.3s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.messagecontainer {
+  color: #170b4686;
+}
+
+.Failor_icone {
+  width: 100%;
+  color: #ff002bd5;
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+  margin-bottom: 20px;
+  animation: rotateAndFadeIn 0.8s ease-out forwards;
+}
+
+.Success_icone {
+  width: 100%;
+  margin-bottom: 20px;
+  color: #007bff;
+  svg {
+    height: 50px;
+    width: 50px;
+  }
+  animation: rotateAndFadeIn 0.8s ease-out forwards;
+}
+
+.OkButton {
+  width: 100%;
+  align-self: center;
+  display: block;
+  margin-top: 40px;
+  padding: 15px 25px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.CancelButton {
+  width: 100%;
+  align-self: center;
+  display: block;
+  margin-top: 40px;
+  padding: 15px 25px;
+  background-color: #ff002bd5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.CancelButton:hover {
+  background-color: #e9084c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.OkButton:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes rotateAndFadeIn {
+  0% {
+      transform: rotate(0deg);
+      opacity: 0;
+  }
+  50% {
+      opacity: 0.5;
+  }
+  100% {
+      transform: rotate(360deg);
+      opacity: 1;
+  }
+}
+
+@keyframes rotateAndFadeOut {
+  0% {
+      transform: rotate(360deg);
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.5;
+  }
+  100% {
+      transform: rotate(0deg);
+      opacity: 0;
+  }
+}
+
+@keyframes cardFadeOut {
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  50% {
+      opacity: 0.5;
+      transform: translateY(-10px);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+}
+
+.Oudini {
+  animation: cardFadeOut 5s ease-out forwards;
+}
+
+.MailsendIcon {
+  position: relative;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: 40px 60px 30px 60px;
+  border-color: #3760C9 #96DDFC #96DDFC #36BBF7;
+  animation: envFloating 1s ease-in infinite alternate;
+}
+
+.MailsendIcon:after {
+  content: "";
+  position: absolute;
+  right: 62px;
+  top: -40px;
+  height: 70px;
+  width: 50px;
+  background-image: linear-gradient(#fff 45px, transparent 0),
+            linear-gradient(#fff 45px, transparent 0),
+            linear-gradient(#fff 45px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 30px 4px;
+  background-position: 0px 11px , 8px 35px, 0px 60px;
+  animation: envDropping 0.75s linear infinite;
+}
+
+@keyframes envFloating {
+  0% {
+    transform: translate(-2px, -5px)
+  }
+
+  100% {
+    transform: translate(0, 5px)
+  }
+}
+
+@keyframes envDropping {
+  0% {
+    background-position: 100px 11px , 115px 35px, 105px 60px;
+    opacity: 1;
+  }
+
+  50% {
+    background-position: 0px 11px , 20px 35px, 5px 60px;
+  }
+
+  60% {
+    background-position: -30px 11px , 0px 35px, -10px 60px;
+  }
+
+  75%, 100% {
+    background-position: -30px 11px , -30px 35px, -30px 60px;
+    opacity: 0;
+  }
+}
+
+
+
+
+/* From Uiverse.io by MikeeMikee */
+.MailOutbuttonSystemIcone {
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  margin-bottom: 30px;;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-content: center;
+  transition:
+    background 300ms,
+    transform 200ms;
+  font-weight: 600;
+
+.button__circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  background: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__icon--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+:hover {
+  background: #007bff;
+  transform: scale(1.05);
+}
+
+:hover .button__icon {
+  color: #fff;
+}
+
+:hover .button__icon:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+:hover .button__icon--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
+
+:active {
+  transform: scale(0.95);
+}
+}
+
+@keyframes text-rotation {
+  to {
+    rotate: 360deg;
+  }
+}

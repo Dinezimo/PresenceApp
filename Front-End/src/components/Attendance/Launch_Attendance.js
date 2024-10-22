@@ -6,7 +6,7 @@ import Slider from "../Dashbord./slider";
 import { FaChevronDown,  FaChevronUp} from "react-icons/fa";
 import "./LauchPresence.css";
 import Header from "../Header";
-import HeaderAnimation from "../HeaderAnimation/HeaderAnimation";
+import UserProfile from "../user/UserProfile";
 
 const LaunchPresence = () => {
     const [group, setGroup] = useState([
@@ -16,6 +16,7 @@ const LaunchPresence = () => {
     const [selectedGroup, setSelectedGroup] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedGateway, setSelectedGateway] = useState(null);
+    const [userProfile, setUserProfile] = useState(false);
 
     const handleGroupSelect = (group) => {
         setSelectedGroup(group);
@@ -30,7 +31,7 @@ const LaunchPresence = () => {
         <div className="LaunchPresenceContainerAndSlider">
             <Slider ind={2} />
             <div className="LaunchPresenceContainer">
-                <Header objet={<HeaderAnimation ind={1}/>} userProfile={"./assets/advancedpack.jpg"}/>
+                <Header objet={<div><h2>Launch a Attendance session</h2></ div>} userProfile={"./assets/advancedpack.jpg"} onUserProfileClick={() => {setUserProfile(true)}}/>
                 <div className="LaunchPresenceSesionName">
                     <h2>Your Session Name</h2>
                     <input className="LaunchPresenceSesionNameInput" type="text" placeholder="Review Meeting" />
@@ -88,6 +89,13 @@ const LaunchPresence = () => {
 
                 <button className="StartPresence">Start</button>
             </div>
+            {userProfile && <UserProfile
+                bannerPicture={'./assets/advancedpack.jpg'}
+                profilePicture={'./assets/autorite.png'}
+                userName={'Free Palestine'}
+                userEmail={'dadadam@freepalestine'}
+                onClose={() => {setUserProfile(false)}}/>
+            }
         </div>
     );
 };

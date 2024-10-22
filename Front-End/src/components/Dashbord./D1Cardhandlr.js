@@ -7,6 +7,7 @@ import UserProfileCard from './ViewUser';
 import BulkCard from './BulkCard';
 import UserProfile from '../user/UserProfile';
 import SearchAndSelect from './SeacherAndSelector';
+import SuccesOrFailor from '../SuccessAndfailCard/SuccesAndFailorCard';
 
 const D1CardHandling = () => {
     const[removeGroupConfirmation, setRemoveGroupConfirmation] = useState(false);
@@ -21,13 +22,14 @@ const D1CardHandling = () => {
     const [UserProfileCard_, setUserProfileCard_] = useState(false);
     const [GroupProfileCard_, setGroupProfileCard_] = useState(false);
     const [isJoinning, setIsJoining] = useState(false);
+    const [CreationGroupCard, setCreationGroupCard] = useState(false);
 
     return (
         <div className='CHandlerContainer'>
             {removeGroupConfirmation && <ConfirmationDialog onCancel={() => {setRemoveGroupConfirmation(false); setBlur(false)}} title={"Group Removing"} message={"Are you sure to remove this group ?"}/>}
             {removeUserConfirmation && <ConfirmationDialog onCancel={() => {setRemoveUserConfirmation(false); setBlur(false)}} title={"User Removing"} message={"Are you sure to remove this User ?"}/>}
-            {addUserbymail && <Popup title={"User adding"} message={"Put your new member mail and submit it"} type={"email"} onSubmit={()=> {}} onReturn={() => {setaddUserbymail(false); setBlur(false)}} placeholder={"hallaMadrid@exemple.con"} onBulk={() => {setaddUserBulking(true); setBlur(true); setaddUserbymail(false)}}/>}
-            {addGroup && <Popup title={"New group Creation"} message={"Wanting to expand your institution, you've come to the right place."} type={"text"} onSubmit={()=> {}} onReturn={() => {setaddGroup(false); setBlur(false)}} placeholder={"eg: Cr7fans"} onBulk={()=>{setaddGroupBulking(true); setBlur(true); setaddGroup(false)}}/>}
+            {addUserbymail && <Popup title={"User adding"} message={"Put your new member mail and submit it"} type={"email"} onSubmit={()=> {}} onReturn={() => {setaddUserbymail(false); setBlur(false)}} placeholder={"hallaMadrid@exemple.con"} onBulk={() => {setaddUserBulking(true); setBlur(true); setaddUserbymail(false)}} action={"addPeople"}/>}
+            {addGroup && <Popup title={"New group Creation"} message={"Wanting to expand your institution, you've come to the right place."} type={"text"} onSubmit={()=> {}} onReturn={() => {setaddGroup(false); setBlur(false)}} placeholder={"eg: Cr7fans"} onBulk={()=>{setaddGroupBulking(true); setBlur(true); setaddGroup(false)}} action={"SuccessOrFailor"}/>}
             {UserInfosCard && <UserProfileCard picture={"./assets/student.webp"} userName={"Nigtcore"} userMail={"Hokage@premature"} onCancel={() => {setUserInfosCard(false); setBlur(false)}}/>}
             {addGroupBulking && <BulkCard img_template={"./xlx_docs/BulkGroupAddTemplate.png"} onReturn={()=> {setaddGroupBulking(false); setBlur(false)}} downloadable={"./xlx_docs/BulkGroupAddTemplate.xlsx"}/>}
             {addUserBulking && <BulkCard img_template={"./xlx_docs/BulkUserAddTemplate.png"} onReturn={()=> {setaddUserBulking(false); setBlur(false)}} downloadable={"./xlx_docs/BulkUserAddTemplate.xlsx"}/>}
@@ -44,7 +46,7 @@ const D1CardHandling = () => {
                     user_profile_card:  () => {setUserProfileCard_(true); setBlur(true)},
                     viewgroup:  () => {setGroupInfosCard(true); setBlur(true)},
                     viewMember: () => {setUserInfosCard(true); setBlur(true)},
-                    joinagroup: () => {setIsJoining(true); setBlur(true)}}}/>
+                    joinagroup: () => {setIsJoining(true); setBlur(true); console.log('mamaman')}}}/>
             </div>
         </div>
     );

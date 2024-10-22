@@ -1,12 +1,18 @@
+.no_slider {
+  margin-inline: 20px;
+  width: 90%;
+}
+
 .Repport_Container {
     display: flex;
     flex-direction: row;
     width: 100%;
     box-sizing: border-box;
+    background-color: #f0f4f8;
 
   .Repport_body {
     padding: 20px;
-    background: #f4f7fc;
+    background: #ffffff;
     display: flex;
     justify-content: space-between;
   }
@@ -146,4 +152,10 @@
     padding: 15px;
     text-align: left;
   }
+}
+
+.ScrollingPb {
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 5px;
 }

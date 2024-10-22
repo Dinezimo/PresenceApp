@@ -99,11 +99,10 @@ const AddCessionInPlan = ({onCancel}) => {
     const [isprofile, setIsprofile] = useState(false);
     return (
       <div className="session-planning-container">
-        {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
         <Slider ind={2} />
         {!isAdding ? (
           <div className="session-planning">
-            <Header objet={<HeaderAnimation ind={2}/>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
+            <Header objet={<h2>Session Planning</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
             <div className="report-body">
               <div className="report-head"></div>
               <button className="add-button" onClick={() => setIsAdding(true)}>Add Session</button>
@@ -136,6 +135,7 @@ const AddCessionInPlan = ({onCancel}) => {
         ) : (
           <AddCessionInPlan onCancel={() => setIsAdding(false)} />
         )}
+        {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
       </div>
     );
   };

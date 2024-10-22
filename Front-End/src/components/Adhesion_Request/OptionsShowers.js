@@ -27,13 +27,12 @@ import './OptionShower.css'
   
     return (
     <div className="AdhesionOptionshowerContainerAndSlider">
-      {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
       <div className="Slider">
         <Slider ind={2}/>
       </div>
       <div className="AdhesionOptionshowerContainer">
         {/* Render the 2x2 grid of option cubes */}
-        <Header userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
+        <Header userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)} objet={<h2>Adhesion Request</h2>}/>
         <div className="grid-container">
           {options.map((option, index) => (
             <div
@@ -48,10 +47,13 @@ import './OptionShower.css'
         </div>
   
         {/* Render the active tab content with matching color */}
-        <div className="tab-content" style={{ borderColor: options[activeIndex].color }}>
-          {options[activeIndex].tab}
+        <div className="ScrollingPb">
+          <div className="tab-content">
+            {options[activeIndex].tab}
+          </div>
         </div>
       </div>
+      {isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>}
       </div>
     );
   };

@@ -1,17 +1,43 @@
 import React, { useState } from 'react';
 import './Popup.css';
+import SuccesOrFailor from '../SuccessAndfailCard/SuccesAndFailorCard';
 
-const Popup = ({title, message, placeholder, type, onSubmit, onReturn, onBulk}) => {
+const Popup = ({title, message, placeholder, type, onSubmit, onReturn, onBulk, action}) => {
   const [email, setEmail] = useState('');
+  const [SuccesOrFailorCard, setSuccestOrFailorCard] = useState(false);
+  const [InviteRegisteredUser, setInviteRegisteredUser] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit();
+    setSuccestOrFailorCard(true);
     console.log('Email submitted:', email);
   };
 
   return (
     <div className="popup">
+
+      {/*For sucess or defeat card*/}
+      {SuccesOrFailorCard && ((Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1) ?
+      <SuccesOrFailor
+      ind={1}
+      msg={"You have creatated successfully your new group. You can access to it directly in the dashbord and manage it easily"}
+      onOkClick={() => {setSuccestOrFailorCard(false); onReturn()}}/> :
+      <SuccesOrFailor
+      ind={0}
+      msg={"The process to create new institution have failed. Can you check your connection and repeat please ???"}
+      onOkClick={() => {setSuccestOrFailorCard(false); onReturn()}}/>)}
+
+      {InviteRegisteredUser && (((Math.floor(Math.random() * (1 - 0 + 1)) + 0 == 1) ?
+      <SuccesOrFailor
+      ind={3}
+      msg={"A Inviatation have been sent to your correspondant and are wating to be validated. You can see the evolvement in AdhesionRequest page"}
+      onOkClick={() => {setInviteRegisteredUser(false); onReturn()}}/> :
+      <SuccesOrFailor
+      ind={4}
+      msg={"Your correspondant is not registered to the system. We will create a new account with his mail and send him credentials After It, he will have possibility to validate your invitation"}
+      />))}
+      {!SuccesOrFailorCard && (
       <form className="form" onSubmit={handleSubmit}>
         <div className="icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 34 34" height="34" width="34">
@@ -34,12 +60,24 @@ const Popup = ({title, message, placeholder, type, onSubmit, onReturn, onBulk}) 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit" className="submit">Submit</button>
+        {<button type="submit" className="submit" onClick={() => {
+          if (action == 'SuccessOrFailor') setSuccestOrFailorCard(true);
+          if (action == 'addPeople') setInviteRegisteredUser(true);
+          console.log("bring bang bang")}}>Submit</button>}
         <button className="submit" onClick={onBulk}>Bulk adding</button>
         <button className="submit" onClick={onReturn}>Return</button>
       </form>
+      )}
     </div>
   );
 };
 
+
+const TestCompo = () => {
+  return(
+    <SuccesOrFailor
+      ind={0}
+      msg={"you have creatated successfully your new group. You can access to it directly in the dashbord and manage it easily"}/>
+  );
+}
 export default Popup;

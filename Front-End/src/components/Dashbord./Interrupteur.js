@@ -8,12 +8,12 @@ const Powerlever = ({top, down, isOn, setIsOn}) => {
   
     return (
       <div className='switchContainer'>
-        <div className={`label ${isOn ? 'active' : ''}`}>{top}</div>
+        <div className={`label ${isOn ? 'active' : ''}`}><h4>{top}</h4></div>
         <label className="switch">
           <input type="checkbox" className="chk" checked={isOn} onChange={handleToggle} />
           <span className="slider" />
         </label>
-        <div className={`label ${!isOn ? 'active' : ''}`}>{down}</div>
+        <div className={`label ${!isOn ? 'active' : ''}`}><h4>{down}</h4></div>
       </div>
     );
 }
