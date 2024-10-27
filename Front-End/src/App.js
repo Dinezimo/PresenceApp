@@ -16,6 +16,7 @@ import RepportDashboard from './components/repport/Repport.js';
 import LaunchPresence from './components/Attendance/Launch_Attendance.js';
 import SessionPlanning from './components/repport/Session_Plannig.js';
 import AdhesionOptionshower from './components/Adhesion_Request/OptionsShowers.js';
+import SettingsPage from './components/Settings/Setting.js';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/LaunchPresence' element={<LaunchPresence/>}></Route>
         <Route path='/PlanSession' element={<SessionPlanning/>}/>
         <Route path='/AdhesionRequest' element={<AdhesionOptionshower/>}/>
+        <Route path='/Settings' element={<SettingsPage/>}/>
       </Routes>
     </Router>
   );

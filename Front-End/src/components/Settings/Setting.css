@@ -1,0 +1,187 @@
+.settings-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #0347ac, #007bff);
+    color: #fff;
+    width: 100%;
+}
+
+.settings-page h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* Each setting option */
+.settings-option {
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-option:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.settings-option img,
+.settings-option svg {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.settings-option:hover img,
+.settings-option:hover svg {
+    transform: scale(1.1);
+}
+
+.settings-option h3 {
+    margin-left: 15px;
+    font-size: 20px;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.InviteFriend:hover {
+    color: #ffd700;
+}
+
+/* Invite Status Card */
+.invite-status-card {
+    width: 90%;
+    max-width: 500px;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+}
+
+.invite-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.SMS {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.IsSMS {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+}
+
+.invite-status-card.success {
+    background-color: #28a745;
+}
+
+.invite-status-card.failure {
+    background-color: #dc3545;
+}
+
+/* External Notifications Toggle */
+.settings-option label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.settings-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Phone Number Input */
+.settings-option input[type="tel"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-top: 8px;
+}
+
+input[type="email"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    transition: border-color 0.3s ease;
+    margin-top: 8px;
+}
+.settings-option input[type="tel"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+.settings-page {
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffd700;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+button:hover {
+    background-color: #ffc107;
+    transform: translateY(-2px);
+}
+}
+/* Disabled Text Warning */
+.warning-text {
+    color: #ffc107;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.IoExitOutline {
+    display: flex;
+    gap: 10px;
+}
+
+.SettngPageContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background: linear-gradient(135deg, #007bff, #004a94);
+}

@@ -28,7 +28,12 @@
 }
 
 .notification-icon {
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
+    font-weight: 800;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
