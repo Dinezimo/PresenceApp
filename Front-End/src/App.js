@@ -17,6 +17,7 @@ import LaunchPresence from './components/Attendance/Launch_Attendance.js';
 import SessionPlanning from './components/repport/Session_Plannig.js';
 import AdhesionOptionshower from './components/Adhesion_Request/OptionsShowers.js';
 import SettingsPage from './components/Settings/Setting.js';
+import ComingSoonPage from './pages/ComingSoonPage.js';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/PlanSession' element={<SessionPlanning/>}/>
         <Route path='/AdhesionRequest' element={<AdhesionOptionshower/>}/>
         <Route path='/Settings' element={<SettingsPage/>}/>
+        <Route path='/ComingSoon' element={<ComingSoonPage/>}/>
       </Routes>
     </Router>
   );
