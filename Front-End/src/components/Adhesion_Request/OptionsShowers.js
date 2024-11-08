@@ -28,7 +28,7 @@ import './OptionShower.css'
     return (
     <div className="AdhesionOptionshowerContainerAndSlider">
       <div className="Slider">
-        <Slider ind={2}/>
+        {/*<Slider ind={2}/>*/}
       </div>
       <div className="AdhesionOptionshowerContainer">
         {/* Render the 2x2 grid of option cubes */}

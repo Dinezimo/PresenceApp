@@ -1,9 +1,3 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 .container {
     width: 250px;
     color: white;
@@ -20,18 +14,10 @@
 
 .sidebar {
     background-color: #4B68FF;
-    width: 250px;
+    width: 270px;
     color: white;
     padding-top: 25px;
     height: 100vh;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        height: 95vh;
-        position: absolute;
-        z-index: 2006;
-    }
 }
 
 .sidebar h2 {

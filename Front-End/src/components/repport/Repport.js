@@ -109,20 +109,9 @@ const RepportDashboard = ({ params }) => {
 
   return (
     <div className="Repport_Container">
-      {/*isprofile && <UserProfile bannerPicture={"./assets/autorite.png"} profilePicture={"./assets/autorite.png"} onClose={()=> setIsprofile(false)}/>*/}
-      {!isMobile && <Slider ind={2} />}
-      {isMobile && (
-        <div className="navbar">
-          <FaBars onClick={() => setShowSidebar(!showSidebar)} />
-          <h2>Institution Name Dashboard</h2>
-          <FaBell className="notification-icon" />
-        </div>
-      )}
-      {showSidebar && isMobile && <Slider ind={2} />}
+      {<Slider ind={2} />}
       <div className="no_slider">
-        {!isMobile && (
-          <Header objet={<h2>All reports management</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setUserProfile(true)}/>
-        )}
+        <Header objet={<h2>All reports management</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setUserProfile(true)}/>
         {!isListing ? (
         <div>
         <div className="Repport_body">

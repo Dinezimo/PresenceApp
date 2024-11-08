@@ -213,42 +213,6 @@
     text-align: center;
 }
 
-/* Table Responsiveness */
-@media (max-width: 768px) {
-    .request-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-    
-    .request-table th, .request-table td {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-    }
-}
-
-/* Mobile-Friendly Stacked Table */
-@media (max-width: 576px) {
-    .request-table th, .request-table td {
-        display: block;
-        text-align: left;
-        padding: 10px 5px;
-    }
-    
-    .request-table th {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .request-table td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        color: #007bff;
-        display: block;
-        margin-bottom: 5px;
-    }
-}
 
 /* Fade-in Animation for Tab Switching */
 .tab-content {
@@ -331,3 +295,20 @@
     justify-content: end;
     gap: 10px;
   }
+
+  /* Table Responsiveness */
+@media (max-width: 768px) {
+    .request-table {
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+    
+    .request-table th, .request-table td {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .OptionShowerCube {
+        font-size: 13px;
+        padding: 5px;
+    }
+}

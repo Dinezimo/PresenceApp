@@ -99,7 +99,7 @@ const AddCessionInPlan = ({onCancel}) => {
     const [isprofile, setIsprofile] = useState(false);
     return (
       <div className="session-planning-container">
-        <Slider ind={2} />
+        {<Slider ind={2} />}
         {!isAdding ? (
           <div className="session-planning">
             <Header objet={<h2>Session Planning</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>

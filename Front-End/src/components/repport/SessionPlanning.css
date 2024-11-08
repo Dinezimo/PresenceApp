@@ -99,17 +99,19 @@
   }
   
   @media (max-width: 768px) {
+    .time-interval {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
     .session-planning {
       padding: 10px;
     }
   
     .report-body {
       flex-direction: column;
-    }
-  
-    .time-interval {
-      flex-direction: column;
-      align-items: flex-start;
     }
   
     .report-list-head {
@@ -134,11 +136,9 @@
   
 
   .time-interval {
-    list-style: none;
     display: flex;
     gap: 10px;
     padding: 0;
-    margin: 0;
 }
 
 .time-interval li {

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import './UserProfile.css';
+import { FaMailBulk, FaUser } from 'react-icons/fa';
 
-const UserProfile = ({ bannerPicture, profilePicture, userName, onClose }) => {
+const UserProfile = ({onClose }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(userName || "Gordon Ramsay");
-  const [banner, setBanner] = useState(bannerPicture || "./assets/group.jpg");
-  const [profile, setProfile] = useState(profilePicture || "./assets/freepack.jpg");
-  const [isVisible, setIsVisible] = useState(false);
+  const [name, setName] = useState("Gordon Ramsay");
+  const [mail, setMail] = useState("GordonRamsay@gmail.com");
+  const [banner, setBanner] = useState("./assets/group.jpg");
+  const [profile, setProfile] = useState("./assets/freepack.jpg");
+  const [isVisible, setIsVisible] = useState(false); 
 
   useEffect(() => {
     setIsVisible(true);  // Show the card with animation on mount
@@ -33,7 +34,8 @@ const UserProfile = ({ bannerPicture, profilePicture, userName, onClose }) => {
   };
 
   return (
-    <>
+    <div className='UserProfileContainer'>
+      <div className='NoOverlay'>
       <div className={`UserProfile ${isVisible ? 'slide-in' : ''}`}>
         <div 
           className="card_background_img" 
@@ -68,8 +70,18 @@ const UserProfile = ({ bannerPicture, profilePicture, userName, onClose }) => {
         ) : (
           <>
             <div className="user_details">
-              <h3>{name}</h3>
-              <p>{`Master Chef`}</p>
+              <div className='Username'>
+                <div className='userdetailIcons'>
+                  <FaUser/>
+                </div>
+                <h3>{name}</h3>
+              </div>
+              <div className='Usermail'>
+                <div className='userdetailIcons'>
+                  <FaMailBulk/>
+                </div>
+                <h3>{mail}</h3>
+              </div>
             </div>
             <div className="profil_edit_btn">
               <div className="p_btn hover-btn" onClick={() => setIsEditing(true)}>Edit</div>
@@ -78,7 +90,9 @@ const UserProfile = ({ bannerPicture, profilePicture, userName, onClose }) => {
           </>
         )}
       </div>
-    </>
+      </div>
+      <div className='overlay'></div>
+    </div>
   );
 };
 

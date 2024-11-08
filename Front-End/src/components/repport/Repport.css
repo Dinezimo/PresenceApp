@@ -1,5 +1,5 @@
 .no_slider {
-  margin-inline: 20px;
+  margin: 20px;
   width: 90%;
 }
 
@@ -158,4 +158,30 @@
   max-height: 480px;
   overflow-y: auto;
   padding: 5px;
+}
+
+@media (max-width: 900px) {
+  .Repport_body {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .ReportListHead {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ReportListHead_input {
+    max-width: 110%;
+    width: 100%;
+  }
+  .date-input-container {
+    width: 100%;
+    .date-input {
+      width: 100%;
+    }
+  }
+  .Presence_way {
+    width: 100%;
+  }
 }

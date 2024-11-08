@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Input.css';
 
-const Input1 = () => {
+const Input1 = ({IsSearch}) => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxChange = () => {
       setIsChecked(!isChecked);
+      IsSearch()
     };
   
     return (
@@ -16,7 +17,7 @@ const Input1 = () => {
           onChange={handleCheckboxChange}
         />
         <div className={`mainbox ${isChecked ? 'collapsed' : ''}`}>
-          <div className="iconContainer" onClick={handleCheckboxChange}>
+          <div className="iconContainer" onClick={() => {handleCheckboxChange()}}>
             <svg
               viewBox="0 0 512 512"
               height="1em"
@@ -99,9 +100,9 @@ const Input1 = () => {
   );
   }
 
-  const Search_input = ({ind, placeholder}) => {
+  const Search_input = ({ind, placeholder,  IsSearch}) => {
     if (ind === 1) {
-        return <Input1 />
+        return <Input1 IsSearch={IsSearch}/>
     }
     if (ind === 2)
       return <Input2 placeholder={placeholder}/>

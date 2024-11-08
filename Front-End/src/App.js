@@ -1,16 +1,8 @@
-import logo from './logo.svg';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Groupedash from './components/group/GroupDashboard'
-import Userdah from './components/user/UserDashboard'
 import Login_page from './pages/LoginPage'
-import Home_page from './pages/HomePage'
-import secuered_route from './components/common/PrivateRoute';
-import Contact from './pages/ContactPage'
-import Dash1 from './components/Dashbord./Dash1.js';
 import Register_form from './pages/RegisterComponents/Register_form.js';
 import Loading_page from './components/common/loading_page.js';
 import D1CardHandling from './components/Dashbord./D1Cardhandlr.js';
-import UserProfile from './components/user/UserProfile.js';
 import './App.css';
 import RepportDashboard from './components/repport/Repport.js';
 import LaunchPresence from './components/Attendance/Launch_Attendance.js';
@@ -18,6 +10,7 @@ import SessionPlanning from './components/repport/Session_Plannig.js';
 import AdhesionOptionshower from './components/Adhesion_Request/OptionsShowers.js';
 import SettingsPage from './components/Settings/Setting.js';
 import ComingSoonPage from './pages/ComingSoonPage.js';
+import Notification from './components/Notification/Notification.js';
 
 function App() {
   return (
@@ -33,6 +26,7 @@ function App() {
         <Route path='/AdhesionRequest' element={<AdhesionOptionshower/>}/>
         <Route path='/Settings' element={<SettingsPage/>}/>
         <Route path='/ComingSoon' element={<ComingSoonPage/>}/>
+        <Route path='/Norif' element={<Notification/>}/>
       </Routes>
     </Router>
   );

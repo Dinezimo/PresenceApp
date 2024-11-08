@@ -29,14 +29,14 @@ const D1CardHandling = () => {
             {removeGroupConfirmation && <ConfirmationDialog onCancel={() => {setRemoveGroupConfirmation(false); setBlur(false)}} title={"Group Removing"} message={"Are you sure to remove this group ?"}/>}
             {removeUserConfirmation && <ConfirmationDialog onCancel={() => {setRemoveUserConfirmation(false); setBlur(false)}} title={"User Removing"} message={"Are you sure to remove this User ?"}/>}
             {addUserbymail && <Popup title={"User adding"} message={"Put your new member mail and submit it"} type={"email"} onSubmit={()=> {}} onReturn={() => {setaddUserbymail(false); setBlur(false)}} placeholder={"hallaMadrid@exemple.con"} onBulk={() => {setaddUserBulking(true); setBlur(true); setaddUserbymail(false)}} action={"addPeople"}/>}
-            {addGroup && <Popup title={"New group Creation"} message={"Wanting to expand your institution, you've come to the right place."} type={"text"} onSubmit={()=> {}} onReturn={() => {setaddGroup(false); setBlur(false)}} placeholder={"eg: Cr7fans"} onBulk={()=>{setaddGroupBulking(true); setBlur(true); setaddGroup(false)}} action={"SuccessOrFailor"}/>}
+            {addGroup && <Popup title={"New group Creation"} message={"Wanting to expand your institution, you've come to the right place."} type={"text"} onSubmit={()=> {}} onReturn={() => {setaddGroup(false); setBlur(false)}} placeholder={"eg: Cr7fans"} onBulk={()=>{alert('Not available'); setBlur(false);setaddGroup(false)}} action={"SuccessOrFailor"}/>}
             {UserInfosCard && <UserProfileCard picture={"./assets/student.webp"} userName={"Nigtcore"} userMail={"Hokage@premature"} onCancel={() => {setUserInfosCard(false); setBlur(false)}}/>}
             {addGroupBulking && <BulkCard img_template={"./xlx_docs/BulkGroupAddTemplate.png"} onReturn={()=> {setaddGroupBulking(false); setBlur(false)}} downloadable={"./xlx_docs/BulkGroupAddTemplate.xlsx"}/>}
             {addUserBulking && <BulkCard img_template={"./xlx_docs/BulkUserAddTemplate.png"} onReturn={()=> {setaddUserBulking(false); setBlur(false)}} downloadable={"./xlx_docs/BulkUserAddTemplate.xlsx"}/>}
             {GroupProfileCard_ && <UserProfile onClose={() => {setGroupProfileCard_(false); setBlur(false)}}/>}
             {GroupInfosCard && <UserProfileCard picture={"./assets/student.webp"} userName={"Nigtcore"} userMail={"Hokage@premature"} onCancel={() => {setGroupInfosCard(false); setBlur(false)}}/>}
             {isJoinning && <SearchAndSelect groups={["tiakola", "ninho", "Ashaké", "burnaboy", "Omarlay", "Zebra", "Mhobad", "DidiB", "Himra"]} onReturn={() => {setIsJoining(false); setBlur(false)}}/>}
-            <div className={`CH_overlay${blur ? '_blured': ''}`}>
+            <div className={`CH_overlay${blur ? '_blured': ''}`}></div>
                 <Dash1 params={{
                     rmGroup: () => {setRemoveGroupConfirmation(true);setBlur(true)},
                     rmUser: () => {setRemoveUserConfirmation(true); setBlur(true)},
@@ -47,7 +47,6 @@ const D1CardHandling = () => {
                     viewgroup:  () => {setGroupInfosCard(true); setBlur(true)},
                     viewMember: () => {setUserInfosCard(true); setBlur(true)},
                     joinagroup: () => {setIsJoining(true); setBlur(true); console.log('mamaman')}}}/>
-            </div>
         </div>
     );
 }

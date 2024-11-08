@@ -3,6 +3,18 @@
     align-items: center;
     justify-content: center;
     gap: 1em;
+
+    h4 {
+        margin: 0px;
+    }
+}
+
+@media (max-width: 769px) {
+    .switchContainer { 
+        h4 {
+            font-size: 13px
+        }
+    }
 }
 
 .label {

@@ -1,0 +1,165 @@
+/* Container */
+.NotificationContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.NList {
+    position: absolute;
+    max-width: 360px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+    margin: 20px auto;
+    z-index: 11;
+  }
+  
+  .NList h3 {
+    margin: 5px;
+  }
+  
+  .ExitIcon {
+    position: absolute;
+    z-index: 12;
+    font-size: 30px;
+    color: #fff;
+    transform: translateY(-20px) translateX(-10%);
+    display: flex;
+  }
+
+  .NotifTitle {
+    display: flex;
+    flex-direction: row;
+    background-color: #007bff;
+    color: #fff;
+    padding: 16px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0px;
+    div {
+      font-size: 30px;
+    }
+  }
+
+  /* Notification List */
+  .NList {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .NList::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .NList::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+  }
+  
+  /* Notification Row */
+  .NlistRows {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .NlistRows:hover {
+    background-color: #eaf4ff;
+    transform: scale(1.03);
+  }
+  
+  .NlistRows h5 {
+    margin: 0;
+    color: #333;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    flex-grow: 1;
+    font-weight: 600;
+    padding-left: 10px;
+  }
+  
+  .NlistRows:active {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+  
+  /* Notification Icons */
+  .NlistRows::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 1000;
+    font-size: 1rem;
+    padding: 0 8px;
+    color: #007bff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .NotificationContainer {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  
+    .NotificationContainer h3 {
+      font-size: 16px;
+      padding: 12px;
+    }
+  
+    .NlistRows h5 {
+      font-size: 14px;
+    }
+  
+    .NlistRows::before {
+      font-size: 1rem;
+    }
+  }
+  
+  .NlistRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    div {
+    font-size: 25px;
+    color: #007bff;
+    }
+  }
+
+  /* Overlay Fade Effect */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .overlay {
+    opacity: 1;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  

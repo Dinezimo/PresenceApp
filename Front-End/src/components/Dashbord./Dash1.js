@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import GroupCard from './GroupCard'; // Ensure you have this component
 import MemberCard from './MemberCard'; // Ensure you have this component// Ensure you have this component
 import SearchInput from './search_input' // Ensure you have this component
-import { FaPaperPlane } from 'react-icons/fa';
+import { FaPaperPlane, FaPlus } from 'react-icons/fa';
 import Slider from './slider';
 import Header from '../Header';
 import PowerLever from './Interrupteur.js'
@@ -24,7 +24,6 @@ const Dash1 = ({ params }) => {
         { photo: './assets/utilisateur.png', name: "Groupe10" },
         { photo: './assets/utilisateur.png', name: "Groupe11" },
         { photo: './assets/utilisateur.png', name: "Groupe12" },
-
     ]);
 
     const [memberGroups, setMemberGroups] = useState([
@@ -43,10 +42,22 @@ const Dash1 = ({ params }) => {
     ]);
 
     const [members, setMembers] = useState([
-        { photo: './assets/utilisateur.png', name: "Israel" },
-        { photo: './assets/utilisateur.png', name: "Charlie" },
-        { photo: './assets/utilisateur.png', name: "Abelle" },
-        { photo: './assets/utilisateur.png', name: "Adil" }
+        { photo: './assets/utilisateur.png', name: "Familia" },
+        { photo: './assets/utilisateur.png', name: "Make pizza" },
+        { photo: './assets/utilisateur.png', name: "John Does" },
+        { photo: './assets/utilisateur.png', name: "kallash" },
+        { photo: './assets/utilisateur.png', name: "Criminal" },
+        { photo: './assets/utilisateur.png', name: "Dadandan" },
+        { photo: './assets/utilisateur.png', name: "Marwa Loud" },
+        { photo: './assets/utilisateur.png', name: "Ken takakurz" },
+        { photo: './assets/utilisateur.png', name: "Taico Nakamura" },
+        { photo: './assets/utilisateur.png', name: "La CIA" },
+        { photo: './assets/utilisateur.png', name: "Technologie" },
+        { photo: './assets/utilisateur.png', name: "Marwa" },
+        { photo: './assets/utilisateur.png', name: "Loud" },
+        { photo: './assets/utilisateur.png', name: "Koba LaDé"},
+        { photo: './assets/utilisateur.png', name: "Ninho"},
+        { photo: './assets/utilisateur.png', name: "Niska"},
     ]);
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -54,6 +65,8 @@ const Dash1 = ({ params }) => {
     const [userProfile, setUserProfile] = useState(false);
     const [activeGroupType, setActiveGroupType] = useState('My Groups');
     const [isOn, setIsOn] = useState(true); // Power lever state
+    const [isMemberSearch, setIsMemberSearch] = useState(false);
+    const [isGroupSearch, setIsGroupSearch] = useState(false);
 
     // Handle window resizing to toggle mobile view
     useEffect(() => {
@@ -82,15 +95,19 @@ const Dash1 = ({ params }) => {
             <div className="Thecontent">
                 {!selectedGroup && (
                     <div className="group-card-container">
-                        <div className="card-header">
-                            <PowerLever
+                        <div
+                            className={` ${isGroupSearch ? 'isGroupSearch' : 'card-header'} ${!isOn && isGroupSearch ? 'isJoiningSearch' : ''}`}
+                        >
+                        <div className='PowerLeverResponsive'>
+                        <PowerLever
                                 top="My Groups"
                                 down="Other Groups"
                                 isOn={isOn}
                                 setIsOn={setIsOn}
                             />
+                        </div>
                             <div className="actions-right">
-                                <SearchInput ind={1} />
+                                <SearchInput ind={1} IsSearch={() => setIsGroupSearch(!isGroupSearch)} />
                                 {isOn ? (
                                     <div
                                         className="add-group-btn"
@@ -125,7 +142,10 @@ const Dash1 = ({ params }) => {
                 )}
                 {selectedGroup && isOn && (
                     <div className="member-card-container">
-                        <div className="card-header">
+                        <div className='GroupTitle'>
+                            <h2>{selectedGroup.name} Members</h2>
+                        </div>
+                        <div className={`card-header  ${isMemberSearch ? 'IsMemberSearch' : ''}`}>
                         <button
                             className="join-group-btn"
                             onClick={() => setSelectedGroup(false)}
@@ -133,19 +153,25 @@ const Dash1 = ({ params }) => {
                             <TbTruckReturn className="Return-icon" />
                             <span className='landing-message'>Go back</span>
                         </button>
-                            <h2>{selectedGroup.name} Members</h2>
-                            <div className="actions-right">
+                            <div className={`actions-right`}>
                                 <img
                                     src='./assets/autorite.png'
                                     alt="Group Profile"
                                     onClick={params.groupProfileCard}
                                     className="group-profile-icon"
                                 />
-                                <SearchInput ind={1} />
+                                <SearchInput ind={1} IsSearch={() => setIsMemberSearch(!isMemberSearch)}/>
                                 <div className="add-user-btn" onClick={params.addUser}>
                                     <span className="tooltip-text" data-tooltip="Add User">Add User</span>
                                 </div>
+                                <div className="add-user-btn-responsive-container">
+                                    <div className='TooltipSpan'><span className="Tooltip">Add User</span></div>
+                                    <div className="add-user-btn-responsive" onClick={params.addUser}>
+                                        <FaPlus/>
+                                    </div>
+                                </div>
                             </div>
+                            
                         </div>
                         <div className="card-body">
                             {members.map((member, index) => (
