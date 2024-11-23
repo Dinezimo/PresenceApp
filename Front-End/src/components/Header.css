@@ -17,6 +17,11 @@
     flex: 1;
 }
 
+.header-left {
+    display: flex;
+    flex-direction: row;
+}
+
 .header-right {
     display: flex;
     align-items: center;
@@ -40,4 +45,38 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
+    display: inline-block;
 }
+
+.notification-badge {
+    position: absolute;
+  top: -5px; /* Adjust this value to position the badge */
+  right: -5px; /* Adjust this value to position the badge */
+  background-color: red; /* Change to your preferred color */
+  color: white;
+  border-radius: 50%; /* Rounded corners */
+  font-size: 14px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px; /* Minimum width for consistency */
+  text-align: center;
+  }
+
+  .header-left_BarT {
+    font-size: 30px;
+    color: white;
+    font-weight: 900;
+  }
+
+  @media (max-width: 500px) {
+    .header-left_Obj {
+        display: none;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .header-left_BarT {
+        display: none;
+    }
+  }

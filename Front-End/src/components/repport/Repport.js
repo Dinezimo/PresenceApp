@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Search_input from "../Dashbord./search_input";
 import DateInput from "../common/DateInput";
 import DownloadButton from "../common/download_icone";
@@ -82,11 +82,8 @@ const OneReportRow2 = ({Reports}) => {
   };
 
 const RepportDashboard = ({ params }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [showSidebar, setShowSidebar] = useState(false);
   const [MineOrOther, setMineOrOther] = useState(true);
   const [isListing, setIsListing] = useState(false);
-  const [isprofile, setIsprofile] = useState(false);
   const [Reports, setReports] = useState([
     { profile: "./assets/autorite.png", name: "Tepitech", time: "08:15", date: "17/06/24", group: "Tatakaé", gateway: 1 },
     { profile: "./assets/autorite.png", name: "Epitcétou", time: "09:15", date: "15/12/24", group: "TaicoTeam", gateway: 2 },
@@ -106,12 +103,27 @@ const RepportDashboard = ({ params }) => {
     {status: 1, profile: "./assets/autorite.png", name: "Kick Off", time: "19:15", date: "25/01/24", group: "Barbarossa", gateway: 2 }
   ]);
   const [userProfile, setUserProfile] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+
+
+  const handleSidebareforbigScreen = () => {
+      if (!isMobile)
+      setIsSidebarOpen(true);
+  }
+
+  useEffect(handleSidebareforbigScreen, []);
 
   return (
     <div className="Repport_Container">
-      {<Slider ind={2} />}
+      {isSidebarOpen && <Slider onReturn={() => setIsSidebarOpen(false)} />}
       <div className="no_slider">
-        <Header objet={<h2>All reports management</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setUserProfile(true)}/>
+        <Header
+          objet={<h2>All reports management</h2>}
+          userProfile={"./assets/advancedpack.jpg"}
+          onUserProfileClick={() => {setUserProfile(true)}}
+          setIsSidebarOpen={() => {setIsSidebarOpen(true)}}
+          />
         {!isListing ? (
         <div>
         <div className="Repport_body">

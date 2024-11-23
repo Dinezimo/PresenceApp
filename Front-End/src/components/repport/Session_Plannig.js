@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Search_input from "../Dashbord./search_input";
 import { LiaQrcodeSolid } from "react-icons/lia";
 import { RiPhoneCameraFill } from "react-icons/ri";
@@ -25,7 +25,6 @@ const AddCessionInPlan = ({onCancel}) => {
     const handleGatewaySelect = (gateway) => {
       setSelectedGateway(gateway);
     };
-    
     return (
       <div className="add-cession-plan-container">
         <div className="add-cession-form">
@@ -94,15 +93,32 @@ const AddCessionInPlan = ({onCancel}) => {
     const handleIntervalClick = (interval) => {
         setActiveInterval(interval);
     };
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const handleSidebareforbigScreen = () => {
+      if (!isMobile)
+      setIsSidebarOpen(true);
+  }
+
+  useEffect(handleSidebareforbigScreen, []);
+
+    
     const [isAdding, setIsAdding] = useState(false);
     const [activeInterval, setActiveInterval] = useState('Today');
     const [isprofile, setIsprofile] = useState(false);
     return (
       <div className="session-planning-container">
-        {<Slider ind={2} />}
+        {isSidebarOpen && <Slider onReturn={() => setIsSidebarOpen(false)} />}
         {!isAdding ? (
           <div className="session-planning">
-            <Header objet={<h2>Session Planning</h2>} userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)}/>
+            <Header
+              objet={<h2>Session Planning</h2>}
+              userProfile={"./assets/autorite.png"}
+              onUserProfileClick={() => setIsprofile(true)}
+              setIsSidebarOpen={() => {setIsSidebarOpen(true)}}
+            />
             <div className="report-body">
               <div className="report-head"></div>
               <button className="add-button" onClick={() => setIsAdding(true)}>Add Session</button>

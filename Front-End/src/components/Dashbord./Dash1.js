@@ -67,14 +67,24 @@ const Dash1 = ({ params }) => {
     const [isOn, setIsOn] = useState(true); // Power lever state
     const [isMemberSearch, setIsMemberSearch] = useState(false);
     const [isGroupSearch, setIsGroupSearch] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     // Handle window resizing to toggle mobile view
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        const handleResize = () => setIsMobile(window.innerWidth <= 500);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
+
     }, []);
 
+    const handleSidebareforbigScreen = () => {
+        if (!isMobile)
+        setIsSidebarOpen(true);
+        console.log('Ton maudia', isMobile);
+    }
+
+
+    useEffect(handleSidebareforbigScreen, []);
     const handleGroupSelect = (group) => {
         setSelectedGroup(group);
     };
@@ -85,12 +95,13 @@ const Dash1 = ({ params }) => {
 
     return (
         <div className='Dash1Container'>
-        {<Slider ind={2} />}
+        {isSidebarOpen && <Slider onReturn={() => setIsSidebarOpen(false)}/>}
         <div className="dash-container">
             <Header
                 objet={<h2>Group Dashboard</h2>}
                 userProfile={'./assets/Boss.jpg'}
                 onUserProfileClick={() => setUserProfile(true)}
+                setIsSidebarOpen={() => {setIsSidebarOpen(true)}}
             />
             <div className="Thecontent">
                 {!selectedGroup && (

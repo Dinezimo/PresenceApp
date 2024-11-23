@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Search_input from "../Dashbord./search_input";
 import { LiaQrcodeSolid } from "react-icons/lia";
 import { RiPhoneCameraFill } from "react-icons/ri";
@@ -17,7 +17,17 @@ const LaunchPresence = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedGateway, setSelectedGateway] = useState(null);
     const [userProfile, setUserProfile] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
 
+
+    const handleSidebareforbigScreen = () => {
+        if (!isMobile)
+        setIsSidebarOpen(true);
+    }
+
+    useEffect(handleSidebareforbigScreen, []);
+    
     const handleGroupSelect = (group) => {
         setSelectedGroup(group);
         setIsDropdownOpen(false);
@@ -27,11 +37,24 @@ const LaunchPresence = () => {
         setSelectedGateway(gateway);
     };
 
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 500);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+
+    }, []);
+
+ 
     return (
         <div className="LaunchPresenceContainerAndSlider">
-            <Slider ind={2} />
+            {isSidebarOpen && <Slider onReturn={() => setIsSidebarOpen(false)} />}
             <div className="LaunchPresenceContainer">
-                <Header objet={<div><h2>Launch a Attendance session</h2></ div>} userProfile={"./assets/advancedpack.jpg"} onUserProfileClick={() => {setUserProfile(true)}}/>
+                <Header
+                    objet={<div><h2>Attendance Launching</h2></ div>}
+                    userProfile={"./assets/advancedpack.jpg"}
+                    onUserProfileClick={() => {setUserProfile(true)}}
+                    setIsSidebarOpen={() => {setIsSidebarOpen(true)}}
+                    />
                 <div className="LaunchPresenceSesionName">
                     <h2>Your Session Name</h2>
                     <input className="LaunchPresenceSesionNameInput" type="text" placeholder="Review Meeting" />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GroupsRequestingMeasaMemberTab from "./GroupsRequestingMeasaMember";
 import MyAdhesionRequestTabs from "./MyAdhesionRequest";
 import RequestTojoinMygroupTab from "./RequestToJoinMyGroup";
@@ -8,6 +8,9 @@ import Header from "../Header";
 import UserProfile from "../user/UserProfile";
 import './OptionShower.css'
 
+
+
+/*Adding Request Page */
   const AdhesionOptionshower = () => {
     const [options, setOptions] = useState([
       { placeholder: "My Adhesion Requests", tab: <MyAdhesionRequestTabs />, color: '#007bff' },
@@ -25,14 +28,30 @@ import './OptionShower.css'
       setActiveIndex(index);
     };
   
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+
+
+    const handleSidebareforbigScreen = () => {
+      if (!isMobile)
+      setIsSidebarOpen(true);
+    }
+
+  useEffect(handleSidebareforbigScreen, []);
+
     return (
     <div className="AdhesionOptionshowerContainerAndSlider">
       <div className="Slider">
-        {/*<Slider ind={2}/>*/}
+       {isSidebarOpen && <Slider onReturn={() => setIsSidebarOpen(false)} />}
       </div>
       <div className="AdhesionOptionshowerContainer">
         {/* Render the 2x2 grid of option cubes */}
-        <Header userProfile={"./assets/autorite.png"} onUserProfileClick={() => setIsprofile(true)} objet={<h2>Adhesion Request</h2>}/>
+        <Header
+          userProfile={"./assets/autorite.png"}
+          onUserProfileClick={() => setIsprofile(true)}
+          objet={<h2>Adhesion Request</h2>}
+          setIsSidebarOpen={() => {setIsSidebarOpen(true)}}
+        />
         <div className="grid-container">
           {options.map((option, index) => (
             <div

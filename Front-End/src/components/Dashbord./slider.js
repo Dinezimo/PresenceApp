@@ -6,22 +6,16 @@ import { CiViewList } from 'react-icons/ci';
 import './slider.css';
 import {useNavigate} from 'react-router';
 import { MdOutlineQrCodeScanner } from 'react-icons/md';
-import { FaHome } from 'react-icons/fa';
+import { FaHome} from 'react-icons/fa';
 import { FaRegAddressBook } from 'react-icons/fa';
-import { TbReport } from 'react-icons/tb';
+import { TbReport, TbXboxX} from 'react-icons/tb';
 import { CgCalendar } from 'react-icons/cg';
 
-const Sidebar = ({ menuItems }) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+const Sidebar = ({ menuItems, onReturn }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOut, setMenuOut] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
     const NavTo = useNavigate();
-
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-        setIsSidebarOpen(!isSidebarOpen);
-    };
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -31,8 +25,11 @@ const Sidebar = ({ menuItems }) => {
 
     return (
         <div className="Container">
-            <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-                <h2>Presence app</h2>
+            <div className={`sidebar ${menuOut ? 'SlidebarOut' : ''}`}>
+                <div className='SidebarHead'>
+                    <div onClick={() => {onReturn();setMenuOut(true)}}><TbXboxX/></div>
+                    <h2>Presence app</h2>
+                </div>
                 <nav>
                     <ul>
                         {menuItems.map((item, index) => (
@@ -46,29 +43,20 @@ const Sidebar = ({ menuItems }) => {
     );
 };
 
-const Slider = ({ ind }) => {
-    const menuItems1 = [
-        { label: 'Dashboard', icon: <FaTachometerAlt /> },
-        { label: 'Institutions', icon: <FaPeopleRoof /> },
-        { label: 'Reports', icon: <FaFileAlt /> },
-        { label: 'Profile', icon: <FaUser /> },
-        { label: 'Adhesion Requests', icon: <FaBell /> },
-        { label: 'Notifications', icon: <FaSignOutAlt /> }
-    ];
-
-    const menuItems2 = [
-        {label: 'Home', icon: <FaHome/>, link:  "/dashboard" },
+const Slider = ({ onReturn }) => {
+    const menuItems = [
+        {label: 'Home', icon: <FaHome/>, link:  "/ComingSoon" },
         {label: 'Groupes', icon: <FaPeopleRoof/>, link: "/dashboard"},
-        {label: 'Scan Session Qr code', icon: <MdOutlineQrCodeScanner/>, link: "/dashboard"},
+        {label: 'Scan Session Qr code', icon: <MdOutlineQrCodeScanner/>, link: "/ComingSoon"},
         {label: 'Launch presence', icon: <FaFileAlt/>, link: "/LaunchPresence"},
         {label: 'Session Planning', icon: <CiViewList/>,  link: "/PlanSession"},
         {label: 'Reports', icon: <TbReport />, link: "/UserReport"},
         {label: 'Adhesion Requests', icon: <FaRegAddressBook />, link: "/AdhesionRequest"},
-        {label: 'Calendar', icon: <CgCalendar />, link: "/AdhesionRequest"},
+        {label: 'Calendar', icon: <CgCalendar />, link: "/ComingSoon"},
         {label: 'Settings', icon: <CgCalendar />, link: "/Settings"},
     ];
 
-    return <Sidebar menuItems={ind === 1 ? menuItems1 : menuItems2} />;
+    return <Sidebar menuItems={menuItems} onReturn={onReturn}/>;
 };
 
 export default Slider;

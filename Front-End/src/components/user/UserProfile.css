@@ -185,3 +185,9 @@ input[type="text"] {
     z-index: 11;
   }
 }
+
+@media (min-width: 950px) {
+  .overlay {
+    display: none;
+  }
+}
