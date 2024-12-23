@@ -23,7 +23,8 @@ const Notification = ({OnCancel}) => {
                 <div>
                     <IoIosNotifications/>
                 </div>
-                <h3>Notifications</h3></span>
+                <h3>Notifications</h3>
+            </span>
                 {notification.map( (notif) => (
                     <div className="NlistRows" onClick={redirect(`${notif.redirecto}`)}>
                         {notif.type === 'AR' && (

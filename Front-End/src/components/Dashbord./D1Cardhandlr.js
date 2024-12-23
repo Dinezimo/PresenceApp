@@ -7,7 +7,6 @@ import UserProfileCard from './ViewUser';
 import BulkCard from './BulkCard';
 import UserProfile from '../user/UserProfile';
 import SearchAndSelect from './SeacherAndSelector';
-import SuccesOrFailor from '../SuccessAndfailCard/SuccesAndFailorCard';
 
 const D1CardHandling = () => {
     const[removeGroupConfirmation, setRemoveGroupConfirmation] = useState(false);
@@ -22,7 +21,6 @@ const D1CardHandling = () => {
     const [UserProfileCard_, setUserProfileCard_] = useState(false);
     const [GroupProfileCard_, setGroupProfileCard_] = useState(false);
     const [isJoinning, setIsJoining] = useState(false);
-    const [CreationGroupCard, setCreationGroupCard] = useState(false);
 
     return (
         <div className='CHandlerContainer'>
@@ -37,7 +35,7 @@ const D1CardHandling = () => {
             {GroupInfosCard && <UserProfileCard picture={"./assets/student.webp"} userName={"Nigtcore"} userMail={"Hokage@premature"} onCancel={() => {setGroupInfosCard(false); setBlur(false)}}/>}
             {isJoinning && <SearchAndSelect groups={["tiakola", "ninho", "Ashaké", "burnaboy", "Omarlay", "Zebra", "Mhobad", "DidiB", "Himra"]} onReturn={() => {setIsJoining(false); setBlur(false)}}/>}
             <div className={`CH_overlay${blur ? '_blured': ''}`}></div>
-                <Dash1 params={{
+                {<Dash1 params={{
                     rmGroup: () => {setRemoveGroupConfirmation(true);setBlur(true)},
                     rmUser: () => {setRemoveUserConfirmation(true); setBlur(true)},
                     addUser: () => {setaddUserbymail(true); setBlur(true)},
@@ -46,7 +44,8 @@ const D1CardHandling = () => {
                     user_profile_card:  () => {setUserProfileCard_(true); setBlur(true)},
                     viewgroup:  () => {setGroupInfosCard(true); setBlur(true)},
                     viewMember: () => {setUserInfosCard(true); setBlur(true)},
-                    joinagroup: () => {setIsJoining(true); setBlur(true); console.log('mamaman')}}}/>
+                joinagroup: () => {setIsJoining(true); setBlur(true); console.log('mamaman')}}}
+                />}
         </div>
     );
 }

@@ -198,8 +198,8 @@ const Dash1 = ({ params }) => {
                 )}
             </div>
         </div>
-        {userProfile && <UserProfile bannerPicture={''} profilePicture={'./assets/Boss.jpg'} userName={'Squezzie tread horreur'} onClose={() => setUserProfile(false)}/>}
-        </div>
+            {userProfile && <UserProfile bannerPicture={''} profilePicture={'./assets/Boss.jpg'} userName={'Squezzie tread horreur'} onClose={() => setUserProfile(false)}/>}
+            </div>
     );
 };
 
